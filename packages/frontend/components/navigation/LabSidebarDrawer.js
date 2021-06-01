@@ -10,12 +10,11 @@ import {
 } from "@/utils/list/ListItemSidebar";
 import CustomTheme from "@/themes/default";
 
-const drawerWidth = 280;
+const drawerWidth = 252;
 const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    backgroundColor: CustomTheme.palette.blue.light,
   },
   drawerPaper: {
     width: drawerWidth,
@@ -87,3 +86,4 @@ function LabSidebarDrawer() {
 }
 
 export default LabSidebarDrawer;
+export { LabSidebarDrawer, drawerWidth };

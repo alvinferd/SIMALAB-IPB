@@ -32,12 +32,15 @@ const CustomTheme = createMuiTheme({
     fontWeightBold: 600,
     h1: {
       fontSize: "36px",
+      fontWeight: 800,
     },
     h2: {
       fontSize: "24px",
+      fontWeight: 800,
     },
     h3: {
       fontSize: "16px",
+      fontWeight: 600,
     },
     h4: {
       fontSize: "11px",

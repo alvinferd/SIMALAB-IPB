@@ -1,4 +1,4 @@
-import { Box, ThemeProvider } from "@material-ui/core";
+import { Box, Container, ThemeProvider } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 import CustomTheme from "@/themes/default";
@@ -13,17 +13,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TestingIndex({ children }) {
+function SimalabLayout({ children }) {
   const classes = useStyles();
   return (
     <ThemeProvider theme={CustomTheme}>
       <Box className={classes.container}>
         <LabSidebarDrawer />
-        <LabTopbar />
-        {children}
+        <Box width="100%">
+          <LabTopbar />
+          <Container>{children}</Container>
+        </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default TestingIndex;
+export default SimalabLayout;

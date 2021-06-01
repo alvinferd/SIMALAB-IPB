@@ -7,15 +7,17 @@ const useStyles = makeStyles((theme) => ({
     "&.Mui-selected": {
       backgroundColor: CustomTheme.palette.blue.dark,
       color: "#FFF",
-      boxShadow: (0, 4, 4, "rgba(0, 0, 0, 0.25)"),
+      boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
       borderRadius: theme.spacing(2),
     },
   },
-  list: {
-    display: "flex",
-    justifyContent: "center",
-    color: "#FFF",
-    height: theme.spacing(6.5),
+  menuButton: {
+    padding: `${theme.spacing(0.5)} ${theme.spacing(3)}`,
+    marginBottom: 12,
+    color: "#fff",
+    "&:hover": {
+      borderRadius: theme.spacing(2),
+    },
   },
   listIcon: {
     minWidth: 0,
@@ -32,6 +34,7 @@ function LabListItem({ text, icon, onClick, selected = false }) {
       key={text}
       classes={{
         root: classes.menuRoot,
+        button: classes.menuButton,
       }}
       selected={selected}
     >
