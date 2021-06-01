@@ -9,7 +9,8 @@ import LabTopbar from "@/components/navigation/LabTopbar";
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
-    width: "100vw",
+    width: "100%",
+    maxWidth: "100vw",
   },
 }));
 

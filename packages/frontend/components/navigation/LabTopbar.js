@@ -33,8 +33,8 @@ function LabTopbar() {
           alignItems="flex-start"
         >
           <Grid item>
-            <Typography variant="h2" component="h1">
-              <b style={{ fontWeight: 700 }}>Pinjam Lab</b>
+            <Typography variant="h1" component="h1">
+              <b>Pinjam Lab</b>
             </Typography>
             <Typography variant="body1" component="p" color="textSecondary">
               Selamat datang, lihat ketersediaaan Lab dengan pilih departemen

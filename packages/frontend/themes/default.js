@@ -31,7 +31,7 @@ const CustomTheme = createMuiTheme({
     fontFamily: ['"Open Sans"', "Arial", "sans-serif"].join(","),
     fontWeightBold: 600,
     h1: {
-      fontSize: "36px",
+      fontSize: "28px",
       fontWeight: 800,
     },
     h2: {
@@ -39,7 +39,7 @@ const CustomTheme = createMuiTheme({
       fontWeight: 800,
     },
     h3: {
-      fontSize: "16px",
+      fontSize: "18px",
       fontWeight: 600,
     },
     h4: {

@@ -72,6 +72,7 @@ function LabSidebarDrawer() {
           {ListItemSidebar.map((text, index) => {
             return (
               <LabListItem
+                key={index}
                 text={text}
                 icon={ListItemSidebarIcon[index]}
                 selected={index === 0 ? true : false}
