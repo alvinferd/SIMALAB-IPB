@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 import { Box, Drawer, Typography, Divider, List } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,6 +9,7 @@ import LabListItem from "@/components/data_display/LabListItem";
 import {
   ListItemSidebar,
   ListItemSidebarIcon,
+  ListItemSidebarLink,
 } from "@/utils/list/ListItemSidebar";
 import CustomTheme from "@/themes/default";
 
@@ -39,6 +42,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LabSidebarDrawer() {
+  const router = useRouter();
+  const [selectedRoute, setSelectedRoute] = useState(router.pathname);
+  useEffect(() => {
+    console.log(router.pathname.split("/")[1]);
+  }, [selectedRoute]);
+
+  const handleListItemClick = (_event, item) => {
+    setSelectedRoute(item);
+    router.replace(item);
+  };
+
   const classes = useStyles();
   return (
     <Drawer
@@ -75,7 +89,16 @@ function LabSidebarDrawer() {
                 key={index}
                 text={text}
                 icon={ListItemSidebarIcon[index]}
-                selected={index === 0 ? true : false}
+                onClick={(event) =>
+                  handleListItemClick(
+                    event,
+                    ListItemSidebarLink(router.pathname.split("/")[1])[index]
+                  )
+                }
+                selected={
+                  selectedRoute ===
+                  ListItemSidebarLink(router.pathname.split("/")[1])[index]
+                }
               />
             );
           })}

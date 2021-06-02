@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import Head from "next/head";
 import "../styles/globals.css";
 
 const Noop = ({ children }) => children;
@@ -16,18 +17,31 @@ function MyApp({ Component, pageProps }) {
   };
 
   return (
-    <Layout>
-      <AnimatePresence exitBeforeEnter>
-        <motion.div
-          layout
-          initial="pageInitial"
-          animate="pageAnimate"
-          variants={animationVariants}
-        >
-          <Component {...pageProps} />
-        </motion.div>
-      </AnimatePresence>
-    </Layout>
+    <>
+      <Head>
+        <title>{title} | SIMALAB</title>
+        {/* Primary */}
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="title" content="SIMALAB" />
+        <meta name="keywords" content="IPB,manajemen,laboratorium" />
+        <meta name="language" content="Indonesia" />
+        <meta name="author" content="Kelompok 4 PSBO" />
+        <meta name="description" content="Belum ada" />
+      </Head>
+      <Layout>
+        <AnimatePresence exitBeforeEnter>
+          <motion.div
+            layout
+            initial="pageInitial"
+            animate="pageAnimate"
+            variants={animationVariants}
+          >
+            <Component {...pageProps} />
+          </motion.div>
+        </AnimatePresence>
+      </Layout>
+    </>
   );
 }
 

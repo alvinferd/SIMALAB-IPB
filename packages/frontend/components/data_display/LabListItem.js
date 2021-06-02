@@ -36,6 +36,7 @@ function LabListItem({ text, icon, onClick, selected = false }) {
         root: classes.menuRoot,
         button: classes.menuButton,
       }}
+      onClick={onClick}
       selected={selected}
     >
       <ListItemIcon className={classes.listIcon}>{icon}</ListItemIcon>
