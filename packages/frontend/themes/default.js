@@ -43,7 +43,8 @@ const CustomTheme = createMuiTheme({
       fontWeight: 600,
     },
     h4: {
-      fontSize: "11px",
+      fontSize: "14px",
+      fontWeight: 600,
     },
     subtitle1: {
       fontSize: "16px",

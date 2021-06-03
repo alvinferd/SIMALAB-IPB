@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import Router from "next/router";
+
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
@@ -15,25 +16,28 @@ import {
 } from "@/utils/dummy/ListTableAdminDashboard";
 
 function AdminPinjamLabPage() {
-  const [departemenState, setDepartemenState] = useState(0);
-  useEffect(() => {
-    console.log("Departemen State:", departemenState);
-  }, [departemenState]);
-
   return (
     <>
-      <Grid container justifyContent="space-between" spacing={8}>
-        <Grid item xs={4}>
+      <Grid container justify="space-between" spacing={8}>
+        <Grid item xs={5}>
           <Typography variant="h3" component="h2">
-            Depatemen Anda
+            Form Peminjaman Lab
+          </Typography>
+          <Typography color="textSecondary">
+            Lihat/ Edit form yang anda perlukan untuk peminjaman
           </Typography>
           <Box mt={1.5}>
             <Box mr={1} component="span">
-              <LabButton color="primary">Biologi</LabButton>
+              <LabButton
+                color="primary"
+                onClick={() => Router.push("/admin/pinjam-lab/form-peminjaman")}
+              >
+                Lihat form
+              </LabButton>
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={7}>
           <LabCard title="Request Peminjaman Lab dan Instrumen">
             <Grid container alignItems="center">
               <Grid item xs={4}>
@@ -60,7 +64,7 @@ function AdminPinjamLabPage() {
         </Grid>
       </Grid>
       <Grid container direction="column">
-        <Box mt={5} mb={3}>
+        <Box mt={1} mb={3}>
           <Typography variant="h3" component="h2">
             Jadwal Pemakaian Lab
           </Typography>
@@ -69,10 +73,10 @@ function AdminPinjamLabPage() {
           </Typography>
         </Box>
         <Grid container spacing={8}>
-          <Grid item style={{ minHeight: 72 }} xs={4}>
+          <Grid item style={{ minHeight: 72 }} xs={5}>
             <Calendar />
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={7}>
             <LabCard title="Semua">
               <LabTable
                 column={ListTableColumnDummy}
