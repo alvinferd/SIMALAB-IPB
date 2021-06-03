@@ -16,14 +16,14 @@ class AuthenticationBackend(ModelBackend):
                 user = User.objects.get(username=username)
             except User.DoesNotExist:
                 user = User(username=username)
-                user.is_staff = True
-                user.is_superuser = True
+                user.is_staff = True # nanti jadiin False
+                user.is_superuser = True # nanti jadiin False
                 user.is_mahasiswa = True
                 user.save()
                 mahasiswa = Mahasiswa.objects.create(user=user)
                 mahasiswa.NIM = mahasiswa_res['NIM']
                 mahasiswa.departemen = mahasiswa_res['Mayor']
-                mahasiswa.NIM = mahasiswa_res['KodeStrata']
+                mahasiswa.Strata = mahasiswa_res['KodeStrata']
                 mahasiswa.save()
             
         elif admin_lab_res is not None:
