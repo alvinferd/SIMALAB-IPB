@@ -1,40 +1,100 @@
 # SIMALAB IPB
 Tugas Akhir KOM322-PSBO P1 - Sistem Manajemen Lab IPB
 
+---
+
 ## Deskripsi Aplikasi
 Simalab IPB merupakan sebuah sistem manajemen lab internal yang membantu penanggung jawab dalam dalam mengelola laboratorium, serta mahasiswa IPB yang ingin menggunakan lab untuk kebutuhan penelitian. Dalam input datanya, Simalab IPB menggunakan API IPB, untuk mendapatkan data pengguna mencakup pegawai dan mahasiswa untuk SSO. Sedangkan data-data inventaris dan kegiatan lab akan diinput mandiri oleh admin lab. Data tersebut kemudian akan disimpan pada sebuah database baru Simalab IPB, dan dikembangkan sebagai API Simalab.
 Output dari Simalab IPB diharapkan dapat membantu aktivitas dan manajemen lab IPB khususnya dalam melayani peminjaman laboratorium, memantau ketersediaan alat laboratorium, melakukan rekap bahan dan alat yang tersedia, dan mengelola jadwal pemakaian laboratorium.
 
-## Requirements analysis and Definition 
-### Analisis Kebutuhan Sistem
-aaaaaaaaaaaaaaaaaaaaaa
+---
 
-### User Research & Analysis
-aaaaaaaaaaaaaaaaaaaaa
+## Spesifikasi teknis lingkungan pengembangan
 
+**Software**
+
+**Hardware**
+
+**Tech Stack**
+
+- Frontend: NextJS dan Material UI for React
+
+---
+
+## User Research & Analysis
+
+**Desk Research**
+
+    aaaaaaaaaaaaaaaaaaaaaa
+
+**In Depth Interview**
+
+    aaaaaaaaaaaaaaaaaaaaa
+
+**User Story**
+
+    aaaaaaaaaaaaaaaaaaaaa
+
+**Persona**
+
+    aaaaaaaaaaaaaaaaaaaaa
+![persona](lampiran/persona.png)
+
+**Solusi**
+
+    aaaaaaaaaaaaaaaaaaaaaaa
+
+---
 
 ## Sistem Design
- Use case diagram(lampiran/use_case.png)
- Activity diagram(lampiran/use_case.png)
- Class diagram(lampiran/use_case.png)
- Entity Relationship Diagram(lampiran/use_case.png)
- Arsitektur sistem(lampiran/use_case.png)
- Fungsi utama yang dikembangkan
- Fungsi CRUD
+ **Use case diagram**
+
+ ![usecase](lampiran/usecase.png)
+
+ **Activity diagram**
+
+ ![activity](lampiran/activity.png)
+
+ **Class diagram**
+
+ ![class](lampiran/class.png)
+
+ **Entity Relationship Diagram**
+
+ ![entity](lampiran/entityrelational.png)
+
+ **Arsitektur sistem**
+
+ ![arsitektur](lampiran/arsitektur.png)
+
+ **Fungsi utama yang dikembangkan**
+
+ **Fungsi CRUD**
+
+---
 
 ## Konsep OOP yang digunakan
 aaaaaaaaaaaaaaaaaaaaa
 
+---
+
 ## Tipe desain pengembangan yang digunakan (Pattern/Anti Pattern)
 aaaaaaaaaaaaaaaaaaaaa
 
+---
+
 ## Hasil implementasi perangkat lunak
-(lampiran/use_case.png)
-(lampiran/use_case.png)
-(lampiran/use_case.png)
-### Link aplikasi (jika sudah di deploy)
+![gambar](lampiran/ss1.png)
+![gambar](lampiran/ss2.png)
+![gambar](lampiran/ss3.png)
+
+**Link aplikasi (jika sudah di deploy)**
+
+---
 
 ## Saran
+
+---
 
 ## Developer
 <table>
