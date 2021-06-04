@@ -1,28 +1,141 @@
-# SIMALAB-IPB
-PSBO P1, Kelompok 4
+# SIMALAB IPB
+Tugas Akhir KOM322-PSBO P1 - Sistem Manajemen Lab IPB
 
-Deskripsi
+---
 
-## Deskripsi singkat aplikasi
-## User analysis
-#### User story
+## Deskripsi Aplikasi
+Simalab IPB merupakan sebuah sistem manajemen lab internal yang membantu penanggung jawab dalam dalam mengelola laboratorium, serta mahasiswa IPB yang ingin menggunakan lab untuk kebutuhan penelitian. Dalam input datanya, Simalab IPB menggunakan API IPB, untuk mendapatkan data pengguna mencakup pegawai dan mahasiswa untuk SSO. Sedangkan data-data inventaris dan kegiatan lab akan diinput mandiri oleh admin lab. Data tersebut kemudian akan disimpan pada sebuah database baru Simalab IPB, dan dikembangkan sebagai API Simalab.
+Output dari Simalab IPB diharapkan dapat membantu aktivitas dan manajemen lab IPB khususnya dalam melayani peminjaman laboratorium, memantau ketersediaan alat laboratorium, melakukan rekap bahan dan alat yang tersedia, dan mengelola jadwal pemakaian laboratorium.
+
+---
+
 ## Spesifikasi teknis lingkungan pengembangan
-#### Software
-#### Hardware
-#### Tech Stack
+
+**Software**
+
+**Hardware**
+
+**Tech Stack**
+
 - Frontend: NextJS dan Material UI for React
+
+---
+
+## User Research & Analysis
+
+**Desk Research**
+
+    aaaaaaaaaaaaaaaaaaaaaa
+
+**In Depth Interview**
+
+    aaaaaaaaaaaaaaaaaaaaa
+
+**User Story**
+
+    aaaaaaaaaaaaaaaaaaaaa
+
+**Persona**
+
+    aaaaaaaaaaaaaaaaaaaaa
+![persona](lampiran/persona.png)
+
+**Solusi**
+
+    aaaaaaaaaaaaaaaaaaaaaaa
+
+---
+
+## Sistem Design
+ **Use case diagram**
+
+ ![usecase](lampiran/usecase.png)
+
+ **Activity diagram**
+
+ ![activity](lampiran/activity.png)
+
+ **Class diagram**
+
+ ![class](lampiran/class.png)
+
+ **Entity Relationship Diagram**
+
+ ![entity](lampiran/entityrelational.png)
+
+ **Arsitektur sistem**
+
+ ![arsitektur](lampiran/arsitektur.png)
+
+ **Fungsi utama yang dikembangkan**
+
+ **Fungsi CRUD**
+
+---
+
 ## Konsep OOP yang digunakan
+aaaaaaaaaaaaaaaaaaaaa
+
+---
+
 ## Tipe desain pengembangan yang digunakan (Pattern/Anti Pattern)
-## Hasil dan pembahasan
-#### Use case diagram
-#### Activity diagram
-#### Class diagram
-#### Entity Relationship Diagram
-#### Arsitektur sistem
-#### Fungsi utama yang dikembangkan
-#### Fungsi CRUD
-## Hasil implementasi
-#### Screenshot sistem
-#### Link aplikasi (jika sudah di deploy)
-## Saran untuk pengembangan selanjutnya
-## Developer dan job desc
+aaaaaaaaaaaaaaaaaaaaa
+
+---
+
+## Hasil implementasi perangkat lunak
+![gambar](lampiran/ss1.png)
+![gambar](lampiran/ss2.png)
+![gambar](lampiran/ss3.png)
+
+**Link aplikasi (jika sudah di deploy)**
+
+---
+
+## Saran
+
+---
+
+## Developer
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Nama</th>
+            <th>Nim</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Aldi Oktaviana Hidayat</td>
+            <td>G64180005</td>
+            <td>Frontendk</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Bintang Fikriguska</td>
+            <td>G64180024</td>
+            <td>Backend</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Rafiandi Ammar Putra</td>
+            <td>G64180072</td>
+            <td>UI Designer,Front end</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Annisa Faradila</td>
+            <td>G64180074</td>
+            <td>UX Research , UI Designer</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Alvin Ferdiansyah</td>
+            <td>G64180079</td>
+            <td>Backend, Project Manager</td>
+        </tr>
+    </tbody>
+</table>
