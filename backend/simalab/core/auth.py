@@ -21,9 +21,10 @@ class AuthenticationBackend(ModelBackend):
                 user.is_mahasiswa = True
                 user.save()
                 mahasiswa = Mahasiswa.objects.create(user=user)
+                mahasiswa.Nama = mahasiswa_res['Nama']
                 mahasiswa.NIM = mahasiswa_res['NIM']
                 mahasiswa.departemen = mahasiswa_res['Mayor']
-                mahasiswa.Strata = mahasiswa_res['KodeStrata']
+                mahasiswa.strata = mahasiswa_res['KodeStrata']
                 mahasiswa.save()
             
         elif admin_lab_res is not None:
@@ -32,9 +33,10 @@ class AuthenticationBackend(ModelBackend):
             except User.DoesNotExist:
                 user = User(username=username)
                 user.is_staff = False
-                user.is_admin_lab = True
+                user.is_admin_lab = False
                 user.save()
                 admin_lab = AdminLab.objects.create(user=user)
+                admin_lab.Nama = admin_lab_res['Nama']
                 admin_lab.NIP = admin_lab_res['NIP']
                 admin_lab.NIP = admin_lab_res['ProdiLab'] #ini nanti diganti kalau udh dapat API SIMPEG
                 admin_lab.save()
