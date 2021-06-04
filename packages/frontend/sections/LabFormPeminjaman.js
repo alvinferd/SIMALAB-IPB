@@ -2,63 +2,28 @@ import { Grid, Typography, TextField, Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { DropzoneArea } from "material-ui-dropzone";
+import LabFormField from "@/components/inputs/LabFormField";
 
 const useStyles = makeStyles((theme) => ({
   textField: {
-    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
   },
 }));
 
-function LabFormPeminjaman({ type = "contained" }) {
+const ButtonSave = () => {
+  return (
+    <Grid container justify="flex-end">
+      <Button variant="contained" color="primary">
+        Simpan
+      </Button>
+    </Grid>
+  );
+};
+
+const DropZoneView = () => {
   const classes = useStyles();
   return (
     <>
-      <Grid container spacing={2}>
-        <Grid item xs={7}>
-          <Box>
-            <Typography variant="h4" component="div">
-              Judul Penelitian
-            </Typography>
-            <TextField
-              disabled={type === "preview" ? true : false}
-              fullWidth
-              variant="outlined"
-              margin="dense"
-            />
-          </Box>
-          <Box className={classes.textField}>
-            <Typography variant="h4" component="div">
-              Dosen Pembimbing
-            </Typography>
-            <TextField
-              disabled={type === "preview" ? true : false}
-              fullWidth
-              variant="outlined"
-              margin="dense"
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={5}>
-          <Typography variant="h4" component="div">
-            Nomor Telepon
-          </Typography>
-          <TextField
-            disabled={type === "preview" ? true : false}
-            placeholder="XXXX-XXXX-XXXX"
-            fullWidth
-            variant="outlined"
-            margin="dense"
-          />
-        </Grid>
-      </Grid>
-      <Box className={classes.textField}>
-        <Typography variant="h4" component="div">
-          Unduh berkas form
-        </Typography>
-        <Typography component="div" color="textSecondary">
-          Anda belum mengupload apapun
-        </Typography>
-      </Box>
       <Box className={classes.textField}>
         <Typography variant="h4" component="div">
           Upload berkas form
@@ -70,11 +35,41 @@ function LabFormPeminjaman({ type = "contained" }) {
           <DropzoneArea />
         </Box>
       </Box>
-      <Grid container justify="flex-end" className={classes.textField}>
-        <Button variant="contained" color="primary">
-          Simpan
-        </Button>
+      <ButtonSave />
+    </>
+  );
+};
+
+function LabFormPeminjaman({ type, viewRequest = false }) {
+  const classes = useStyles();
+  const isPreview = type === "preview" ? true : false;
+  return (
+    <>
+      <Grid container spacing={2}>
+        <Grid item xs={7}>
+          <LabFormField title="Judul Penelitian" readOnly={isPreview} />
+          <LabFormField title="Dosen Pembimbing" readOnly={isPreview} />
+        </Grid>
+        <Grid item xs={5}>
+          <LabFormField
+            title="Nomor Telepon"
+            placeholder="XXXX-XXXX-XXXX"
+            readOnly={isPreview}
+          />
+          {viewRequest === true ? (
+            <LabFormField title="Laboratorium" readOnly={isPreview} />
+          ) : null}
+        </Grid>
       </Grid>
+      <Box className={classes.textField}>
+        <Typography variant="h4" component="div">
+          Unduh berkas form
+        </Typography>
+        <Typography component="div" color="textSecondary">
+          Anda belum mengupload apapun
+        </Typography>
+      </Box>
+      {viewRequest === false ? DropZoneView() : null}
     </>
   );
 }
