@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Router from "next/router";
 
 import { Box, Grid, Typography } from "@material-ui/core";
 import Calendar from "react-calendar";
@@ -104,6 +105,19 @@ function AdminPinjamLabPage() {
                 />
               </LabCard>
             </Box>
+
+            <Grid container justify='space-between' alignItems='center'>
+              <Grid item>
+                <Typography variant="body1" color="textSecondary">
+                  + Tambah Request Peminjaman laboratorium
+                </Typography>
+              </Grid>
+              <Grid item>
+                <LabButton size="small" style={{ marginTop: 4 }} onClick={() => Router.push("/user/request-peminjaman")}>
+                  Request
+                </LabButton>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
