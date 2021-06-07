@@ -7,9 +7,10 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import SimalabLayout from "@/layouts/default";
 import { LabSuccessButton, LabWarnButton } from "@/components/inputs/LabButton";
 import { LabCard, LabCardAlatInstrumen } from "@/components/surfaces/LabCard";
+
 import LabFormPeminjaman from "@/sections/LabFormPeminjaman";
 import LabIdentitasPeminjam from "@/sections/LabIdentitasPeminjam";
-import CustomTheme from "@/themes/default";
+import LabCardPagination from "@/sections/LabCardPagination";
 
 function AdminTinjauRequestPage() {
   const router = useRouter();
@@ -40,32 +41,59 @@ function AdminTinjauRequestPage() {
       </Button>
       <Grid container spacing={3}>
         <Grid item xs={6}>
-          <LabCard title="Form Peminjaman Lab" margin={16}>
-            <LabFormPeminjaman type="preview" viewRequest={true} />
-          </LabCard>
-          <LabCard title="Identitas Peminjam" margin={20}>
+          <LabCard title="Identitas Peminjam" margin={16}>
             <LabIdentitasPeminjam />
+          </LabCard>
+          <LabCard title="Peminjaman Alat Instrumen" margin={24}>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <LabCardAlatInstrumen
+                  title="Mikroskop"
+                  subtitle="Mikroskop Cahaya"
+                  jenis="Alat"
+                  image="/images/microscope.jpg"
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <LabCardAlatInstrumen
+                  title="Mikroskop"
+                  subtitle="Mikroskop Cahaya"
+                  jenis="Alat"
+                  image="/images/microscope.jpg"
+                />
+              </Grid>
+            </Grid>
+            <LabCardPagination now={1} total={1} />
           </LabCard>
         </Grid>
         <Grid item xs={6}>
-          <LabCard title="Peminjaman Alat Instrumen" margin={16}>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <LabCardAlatInstrumen />
-              </Grid>
-              <Grid item xs={6}>
-                <LabCardAlatInstrumen />
-              </Grid>
-            </Grid>
+          <LabCard title="Form Peminjaman Lab" margin={16}>
+            <LabFormPeminjaman type="preview" viewRequest={true} />
           </LabCard>
-        </Grid>
-      </Grid>
-      <Grid container justify="flex-end" spacing={1} style={{ marginTop: 40 }}>
-        <Grid item>
-          <LabWarnButton>Tolak</LabWarnButton>
-        </Grid>
-        <Grid item>
-          <LabSuccessButton>Setuju</LabSuccessButton>
+          <Grid
+            container
+            justify="flex-end"
+            spacing={1}
+            style={{ marginTop: 32 }}
+          >
+            <Typography
+              component="p"
+              color="textSecondary"
+              gutterBottom
+              align="right"
+              style={{ marginBottom: 12 }}
+            >
+              Dengan menekan tombol <strong>setuju</strong> maka anda
+              mengizinkan request peminjaman laboratorium dan peminjaman
+              inventaris.
+            </Typography>
+            <Grid item>
+              <LabWarnButton>Tolak</LabWarnButton>
+            </Grid>
+            <Grid item>
+              <LabSuccessButton>Setuju</LabSuccessButton>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </>
