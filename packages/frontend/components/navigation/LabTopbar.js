@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 import {
   Grid,
   Container,
@@ -23,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
 
 function LabTopbar() {
   const classes = useStyles();
+  const router = useRouter();
+  const title = router.pathname.split("/")[2].replace("-", " ");
+
   return (
     <div className={classes.root}>
       <Container>
@@ -33,22 +38,22 @@ function LabTopbar() {
           alignItems="flex-start"
         >
           <Grid item>
-            <Typography variant="h1" component="h1">
-              <b>Pinjam Lab</b>
+            <Typography
+              variant="h1"
+              component="h1"
+              style={{ textTransform: "capitalize" }}
+            >
+              <b>{title}</b>
             </Typography>
             <Typography variant="body1" component="p" color="textSecondary">
-              Selamat datang, lihat ketersediaaan Lab dengan pilih departemen
-              dan pilih lab.
+              {title === "inventaris"
+                ? "Selamat datang, lihat ketersediaaan inventaris di laboratorium tujuanmu!"
+                : "Selamat datang, lihat ketersediaaan Lab dengan pilih departemen dan pilih lab."}
             </Typography>
           </Grid>
           <Box flexGrow={1} />
           <Grid item style={{ marginTop: 2 }}>
-            <Button
-              variant="outlined"
-              color={CustomTheme.palette.error.main}
-              size="small"
-              disableElevation
-            >
+            <Button variant="outlined" size="small" disableElevation>
               Keluar
             </Button>
           </Grid>

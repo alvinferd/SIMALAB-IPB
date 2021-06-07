@@ -18,7 +18,7 @@ function LabButton({
   );
 }
 
-function LabButtonDropdown({ children }) {
+function LabButtonDropdown({ children, ...props }) {
   return (
     <Button
       variant="outlined"
@@ -29,6 +29,7 @@ function LabButtonDropdown({ children }) {
           <KeyboardArrowDownIcon />
         </>
       }
+      {...props}
     >
       {children}
     </Button>
