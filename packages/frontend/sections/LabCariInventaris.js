@@ -1,12 +1,12 @@
-import Image from "next/image";
-import { Box, Grid, Chip, Divider, Typography } from "@material-ui/core";
+import { Box, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { LabCardAlatInstrumen } from "@/components/surfaces/LabCard";
-import LabCardPagination from "@/sections/LabCardPagination";
 import LabButton from "@/components/inputs/LabButton";
-import LabCard from "@/components/surfaces/LabCard";
 import LabSearchField from "@/components/inputs/LabSearchField";
+
+import LabCardPagination from "@/sections/LabCardPagination";
+import LabCardInventaris from "@/sections/LabCardInventaris";
 
 const useStyles = makeStyles((theme) => ({
   detailItem: {
@@ -71,75 +71,15 @@ function LabCariInventaris() {
         </Grid>
 
         <Grid item xs={6}>
-          <LabCard title="Keterangan" noPadding>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              p={2}
-              pb={0}
-              mb={2}
-            >
-              <Box position="relative" height={160} width={160}>
-                <Image
-                  src="/images/microscope.jpg"
-                  alt="Mikroskop"
-                  layout="fill"
-                  objectFit="cover"
-                />
-              </Box>
-              <Box textAlign="center" mt={2} mb={1}>
-                <Typography variant="h4" component="p">
-                  Mikroskop
-                </Typography>
-                <Typography variant="body1" component="p" color="textSecondary">
-                  Mikroskop Cahaya
-                </Typography>
-              </Box>
-              <Chip
-                size="small"
-                variant="outlined"
-                color="primary"
-                label="Alat"
-              />
-            </Box>
-            <Grid container className={classes.detailItem}>
-              <Grid
-                container
-                item
-                xs={4}
-                direction="column"
-                justify="center"
-                alignItems="center"
-              >
-                <Typography color="textSecondary">Kode barang</Typography>
-                <Typography>24</Typography>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={4}
-                direction="column"
-                justify="center"
-                alignItems="center"
-              >
-                <Typography color="textSecondary">Lab</Typography>
-                <Typography>Mikrobiologi</Typography>
-              </Grid>
-              <Grid
-                container
-                item
-                xs={4}
-                direction="column"
-                justify="center"
-                alignItems="center"
-              >
-                <Typography color="textSecondary">Jumlah Stok</Typography>
-                <Typography>4</Typography>
-              </Grid>
-            </Grid>
-          </LabCard>
+          <LabCardInventaris
+            title="Mikroskop"
+            subtitle="Mikroskop Cahaya"
+            src="/images/microscope.jpg"
+            type={["Alat"]}
+            code={24}
+            lab="Mikrobiologi"
+            stock={4}
+          />
         </Grid>
       </Grid>
     </Box>

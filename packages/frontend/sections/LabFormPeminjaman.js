@@ -1,7 +1,7 @@
-import { Grid, Typography, TextField, Box, Button } from "@material-ui/core";
+import { Grid, Typography, Box, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { DropzoneArea } from "material-ui-dropzone";
+import LabDropZone from "@/components/surfaces/LabDropZone";
 import LabFormField from "@/components/inputs/LabFormField";
 
 const useStyles = makeStyles((theme) => ({
@@ -9,36 +9,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
 }));
-
-const ButtonSave = () => {
-  return (
-    <Grid container justify="flex-end">
-      <Button variant="contained" color="primary">
-        Simpan
-      </Button>
-    </Grid>
-  );
-};
-
-const DropZoneView = () => {
-  const classes = useStyles();
-  return (
-    <>
-      <Box className={classes.textField}>
-        <Typography variant="h4" component="div">
-          Upload berkas form
-        </Typography>
-        <Typography component="div" color="textSecondary">
-          Max upload 3 file
-        </Typography>
-        <Box mt={1}>
-          <DropzoneArea />
-        </Box>
-      </Box>
-      <ButtonSave />
-    </>
-  );
-};
 
 function LabFormPeminjaman({ type, viewRequest = false }) {
   const classes = useStyles();
@@ -69,7 +39,9 @@ function LabFormPeminjaman({ type, viewRequest = false }) {
           Anda belum mengupload apapun
         </Typography>
       </Box>
-      {viewRequest === false ? DropZoneView() : null}
+      {viewRequest === false ? (
+        <LabDropZone title="Upload berkas form" subtitle="Max upload 3 file" />
+      ) : null}
     </>
   );
 }
