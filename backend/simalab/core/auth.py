@@ -32,13 +32,10 @@ class AuthenticationBackend(ModelBackend):
                 user = User.objects.get(username=username)
             except User.DoesNotExist:
                 user = User(username=username)
-                user.is_staff = False
-                user.is_admin_lab = False
                 user.save()
                 admin_lab = AdminLab.objects.create(user=user)
                 admin_lab.Nama = admin_lab_res['Nama']
                 admin_lab.NIP = admin_lab_res['NIP']
-                admin_lab.NIP = admin_lab_res['ProdiLab'] #ini nanti diganti kalau udh dapat API SIMPEG
                 admin_lab.save()
 
         else:

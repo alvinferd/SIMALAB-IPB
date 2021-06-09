@@ -14,11 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from simalab.core.views import login
+from django.urls import path, include
+from rest_framework import routers
+from simalab.core import views
 
+router = routers.DefaultRouter()
+router.register(r'orang', views.orangView, 'simalab')
+router.register(r'mahasiswa', views.MhsView, 'simalab')
+router.register(r'pegawai', views.adminView, 'simalab')
+router.register(r'lab', views.labView, 'simalab')
+router.register(r'kategoriAlat', views.kategoriView, 'simalab')
+router.register(r'alat', views.alatView, 'simalab')
+router.register(r'submisiPeminjaman', views.submisiView, 'simalab')
+router.register(r'jadwalPeminjaman', views.peminjamanView, 'simalab')
+router.register(r'templateForm', views.templateView, 'simalab')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', login),
+    path('api/', include(router.urls)),
 ]
+
