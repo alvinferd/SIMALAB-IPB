@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from simalab.core import views
+from rest_framework.authtoken import views as drf_views
+
 
 router = routers.DefaultRouter()
 router.register(r'orang', views.orangView, 'simalab')
@@ -32,5 +34,6 @@ router.register(r'templateForm', views.templateView, 'simalab')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api-token-auth/', drf_views.obtain_auth_token, name='api-token-auth'),
 ]
 
