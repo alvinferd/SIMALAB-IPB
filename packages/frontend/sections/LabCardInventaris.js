@@ -42,6 +42,7 @@ function LabCardInventaris({ title, subtitle, type, code, lab, stock, src }) {
         {type.map((label) => {
           return (
             <Chip
+              key={label}
               size="small"
               variant="outlined"
               color="primary"

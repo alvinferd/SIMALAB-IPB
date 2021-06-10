@@ -45,4 +45,16 @@ function LabListItem({ text, icon, onClick, selected = false }) {
   );
 }
 
+function LabListItemLink({ text, onClick, props }) {
+  return (
+    <ListItem button key={text} onClick={onClick} {...props}>
+      <ListItemText
+        primary={text}
+        primaryTypographyProps={{ variant: "body1", color: "textPrimary" }}
+      />
+    </ListItem>
+  );
+}
+
 export default LabListItem;
+export { LabListItemLink, LabListItem };

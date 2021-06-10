@@ -69,7 +69,13 @@ function LabCard({
   );
 }
 
-function LabCardAlatInstrumen({ title, subtitle, jenis, image }) {
+function LabCardAlatInstrumen({
+  title,
+  subtitle,
+  jenis,
+  image,
+  onButtonClick,
+}) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -114,7 +120,11 @@ function LabCardAlatInstrumen({ title, subtitle, jenis, image }) {
               >
                 {subtitle}
               </Typography>
-              <LabButton size="small" style={{ marginTop: 4, fontSize: 11 }}>
+              <LabButton
+                size="small"
+                style={{ marginTop: 4, fontSize: 11 }}
+                onClick={onButtonClick}
+              >
                 Keterangan
               </LabButton>
             </Grid>

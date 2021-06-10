@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 import { Button, Grid, Typography } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
@@ -6,6 +8,7 @@ import LabFormInventaris from "@/sections/LabFormInventaris";
 import LabCardInventaris from "@/sections/LabCardInventaris";
 
 function AdminFormInventarisPage() {
+  const router = useRouter();
   return (
     <>
       <Button

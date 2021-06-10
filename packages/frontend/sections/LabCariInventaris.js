@@ -1,3 +1,4 @@
+import React from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -17,33 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LabCariInventaris() {
-  const classes = useStyles();
-  const LabItem = () => {
-    let kiri = [];
-    let kanan = [];
-    for (let i = 0; i < 6; i++) {
-      if (i % 2)
-        kiri.push(
-          <LabCardAlatInstrumen
-            title="Mikroskop"
-            subtitle="Mikroskop Cahaya"
-            jenis="Alat"
-            image="/images/microscope.jpg"
-          />
-        );
-      else
-        kanan.push(
-          <LabCardAlatInstrumen
-            title="Mikroskop"
-            subtitle="Mikroskop Cahaya"
-            jenis="Alat"
-            image="/images/microscope.jpg"
-          />
-        );
-    }
-    return { kiri, kanan };
-  };
+function LabCariInventaris({ items }) {
   return (
     <Box mt={4}>
       <Typography variant="h3" component="h2">
@@ -57,13 +32,41 @@ function LabCariInventaris() {
             <LabSearchField />
             <LabButton>Filter</LabButton>
             <Grid item xs={6}>
-              {LabItem().kiri.map((item) => {
-                return <Box mt={2}>{item}</Box>;
+              {items.map((item, index) => {
+                if (index % 2) {
+                  return (
+                    <>
+                      <Box mt={2}>
+                        <LabCardAlatInstrumen
+                          key={item.title}
+                          title={item.title}
+                          subtitle={item.subtitle}
+                          image={item.image}
+                          jenis={item.jenis}
+                        />
+                      </Box>
+                    </>
+                  );
+                }
               })}
             </Grid>
             <Grid item xs={6}>
-              {LabItem().kanan.map((item) => {
-                return <Box mt={2}>{item}</Box>;
+              {items.map((item, index) => {
+                if (!(index % 2)) {
+                  return (
+                    <>
+                      <Box mt={2}>
+                        <LabCardAlatInstrumen
+                          key={item.title}
+                          title={item.title}
+                          subtitle={item.subtitle}
+                          image={item.image}
+                          jenis={item.jenis}
+                        />
+                      </Box>
+                    </>
+                  );
+                }
               })}
             </Grid>
             <LabCardPagination />
