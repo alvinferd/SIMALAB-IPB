@@ -111,7 +111,7 @@ aaaaaaaaaaaaaaaaaaaaa
             <td>1</td>
             <td>Aldi Oktaviana Hidayat</td>
             <td>G64180005</td>
-            <td>Frontendk</td>
+            <td>Frontend</td>
         </tr>
         <tr>
             <td>2</td>
