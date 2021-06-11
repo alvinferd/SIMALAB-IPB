@@ -7,7 +7,7 @@ import LabCard from "@/components/surfaces/LabCard";
 import LabFormPeminjaman from "@/sections/LabFormPeminjaman";
 import LabPeminjamanAlat from "@/sections/LabPeminjamanAlatInstrumen";
 import SimalabLayout from "@/layouts/default";
-import useStyles from "../admin/pinjam-lab/form-peminjaman"
+import useStyles from "../../admin/pinjam-lab/form-peminjaman"
 
 const requestPeminjamanUser = () => {
     const classes = useStyles();

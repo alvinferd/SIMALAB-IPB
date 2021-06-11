@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import Router from "next/router";
 
 import {
   Grid,
@@ -53,7 +54,7 @@ function LabTopbar() {
           </Grid>
           <Box flexGrow={1} />
           <Grid item style={{ marginTop: 2 }}>
-            <Button variant="outlined" size="small" disableElevation>
+            <Button variant="outlined" size="small" onClick={() => Router.push("/user/pinjam-lab/login")} disableElevation >
               Keluar
             </Button>
           </Grid>

@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.react-calendar__tile--now {
+  background: #ff7b76 !important;
+}

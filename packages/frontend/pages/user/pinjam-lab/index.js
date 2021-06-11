@@ -113,7 +113,7 @@ function AdminPinjamLabPage() {
                 </Typography>
               </Grid>
               <Grid item>
-                <LabButton size="small" style={{ marginTop: 4 }} onClick={() => Router.push("/user/request-peminjaman")}>
+                <LabButton size="small" style={{ marginTop: 4 }} onClick={() => Router.push("/user/pinjam-lab/request-peminjaman")}>
                   Request
                 </LabButton>
               </Grid>

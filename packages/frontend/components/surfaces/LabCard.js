@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from "next/image";
 import {
   Grid,
@@ -11,6 +12,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import CustomTheme from "@/themes/default";
 
 import ButtonBase from "@material-ui/core/ButtonBase";
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 import { LabWarnButton } from "@/components/inputs/LabButton";
 import LabButton from "@/components/inputs/LabButton";
 
@@ -137,16 +143,18 @@ function LabCardAlatInstrumen({
   );
 }
 
-function LabCardRequestAlat({ title, margin = 8 }) {
+function LabCardRequestAlat({ title, margin = 16 }) {
   const classes = useStyles();
+  const [count, setCount] = React.useState(1);
   return (
     <div className={classes.root}>
-      <Card elevation={0} variant="outlined" style={{ marginTop: margin }}>
+      <Card elevation={0} variant="outlined" style={{ marginBottom: margin }}>
         <CardHeader
           title={title}
           className={classes.header}
           titleTypographyProps={{ variant: "h4", component: "h4" }}
         />
+
         <Grid container spacing={2} justify="center" alignItems="center">
           <Grid item xs={3}>
             <ButtonBase className={classes.image}>
@@ -154,9 +162,11 @@ function LabCardRequestAlat({ title, margin = 8 }) {
                 className={classes.img}
                 alt="complex"
                 src="/images/microscope.jpg"
+                p={0}
               />
             </ButtonBase>
           </Grid>
+
           <Grid
             item
             xs={3}
@@ -172,20 +182,37 @@ function LabCardRequestAlat({ title, margin = 8 }) {
               Mikroskop cahaya
             </Typography>
           </Grid>
+
           <Grid item xs={3}>
-            <ButtonBase className={classes.image}>
-              <img
-                className={classes.img}
-                alt="complex"
-                src="/static/images/grid/complex.jpg"
-              />
-            </ButtonBase>
+            <ButtonGroup>
+              <LabButton
+                aria-label="reduce"
+                onClick={() => {
+                  setCount(Math.max(count - 1, 1));
+                }}
+              >
+                <RemoveIcon style={{ fontSize: 11 }} />
+              </LabButton>
+              <LabButton>
+                <Typography align="center">
+                  {count}
+                </Typography>
+              </LabButton>
+              <LabButton
+                aria-label="increase"
+                onClick={() => {
+                  setCount(count + 1);
+                }}
+              >
+                <AddIcon style={{ fontSize: 11 }} />
+              </LabButton>
+            </ButtonGroup>
           </Grid>
-          <Box mx={2} className={classes.button}>
-            <Grid item xs={3}>
-              <LabWarnButton size="small">Hapus</LabWarnButton>
-            </Grid>
-          </Box>
+
+          <Grid item xs={3}>
+            <LabWarnButton size="small">Hapus</LabWarnButton>
+          </Grid>
+
         </Grid>
       </Card>
     </div>

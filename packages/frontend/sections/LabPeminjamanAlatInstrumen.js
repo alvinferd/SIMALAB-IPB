@@ -44,10 +44,20 @@ const LabPeminjamanAlat = ({ type, viewRequest = false }) => {
                 </Box>
                 <Box mt={2} className={classes.container}>
                     <Grid item xs={12}>
-                        <LabCardAlatInstrumen />
+                        <LabCardAlatInstrumen
+                            title="Mikroskop"
+                            subtitle="Mikroskop Cahaya"
+                            jenis="Alat"
+                            image="/images/microscope.jpg"
+                        />
                     </Grid>
                     <Grid item xs={12}>
-                        <LabCardAlatInstrumen />
+                        <LabCardAlatInstrumen
+                            title="Mikroskop"
+                            subtitle="Mikroskop Cahaya"
+                            jenis="Alat"
+                            image="/images/microscope.jpg"
+                        />
                     </Grid>
                 </Box>
                 <Box mt={3}>
