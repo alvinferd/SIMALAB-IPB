@@ -9,17 +9,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ButtonSave = () => {
+const ButtonSave = ({ onSave }) => {
   return (
     <Grid container justify="flex-end">
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" onClick={onSave}>
         Simpan
       </Button>
     </Grid>
   );
 };
 
-const LabDropZone = ({ title, subtitle }) => {
+const LabDropZone = ({ title, subtitle, type, onSave }) => {
   const classes = useStyles();
   return (
     <>
@@ -34,7 +34,7 @@ const LabDropZone = ({ title, subtitle }) => {
           <DropzoneArea />
         </Box>
       </Box>
-      <ButtonSave />
+      <ButtonSave onSave={onSave} type={type} />
     </>
   );
 };

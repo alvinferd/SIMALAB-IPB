@@ -44,6 +44,7 @@ function LabCard({
   children,
   title,
   margin = 8,
+  action = null,
   noMargin = false,
   noPadding = false,
   ...props
@@ -61,6 +62,7 @@ function LabCard({
         title={title}
         className={classes.header}
         titleTypographyProps={{ variant: "h3", component: "h3" }}
+        action={action}
       />
       <Box p={noPadding == true ? 0 : 2} pb={noPadding == true ? 0 : 3}>
         {children}

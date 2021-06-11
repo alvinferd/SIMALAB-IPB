@@ -54,7 +54,6 @@ function AdminInventarisPage() {
           <Box>
             <LabPopper anchorEl={anchorEl} open={openPopper}>
               {ListLabDummy.map((item, index) => {
-                console.log("index:", index);
                 return (
                   <LabListItemLink
                     text={item}

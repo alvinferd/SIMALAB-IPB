@@ -12,6 +12,10 @@ const LabFormField = ({
   placeholder = "",
   content = "",
   readOnly = false,
+  type,
+  value,
+  onChange,
+  ...props
 }) => {
   const classes = useStyles();
   return (
@@ -24,9 +28,13 @@ const LabFormField = ({
         color="primary"
         margin="dense"
         variant="outlined"
+        value={value}
+        onChange={onChange}
+        type={type}
         placeholder={placeholder}
         defaultValue={content}
         InputProps={{ readOnly: readOnly }}
+        {...props}
       />
     </Box>
   );

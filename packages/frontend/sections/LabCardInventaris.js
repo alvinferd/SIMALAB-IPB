@@ -7,6 +7,9 @@ import { TimeToLeave } from "@material-ui/icons";
 import LabCard from "@/components/surfaces/LabCard";
 
 const useStyles = makeStyles((theme) => ({
+  kategoriChip: {
+    marginRight: theme.spacing(1),
+  },
   detailItem: {
     background: "#F7FAFF",
     border: "1px solid #E0E4EB",
@@ -39,17 +42,19 @@ function LabCardInventaris({ title, subtitle, type, code, lab, stock, src }) {
             {subtitle}
           </Typography>
         </Box>
-        {type.map((label) => {
-          return (
-            <Chip
-              key={label}
-              size="small"
-              variant="outlined"
-              color="primary"
-              label={label}
-            />
-          );
-        })}
+        <Grid container item xs={12} justify="center">
+          {type.map((item, index) => {
+            return (
+              <Chip
+                className={classes.kategoriChip}
+                color="primary"
+                variant="outlined"
+                key={item.index}
+                label={item.name}
+              />
+            );
+          })}
+        </Grid>
       </Box>
       <Grid container className={classes.detailItem}>
         <Grid

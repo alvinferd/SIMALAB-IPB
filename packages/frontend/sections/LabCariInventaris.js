@@ -3,7 +3,7 @@ import { Box, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { LabCardAlatInstrumen } from "@/components/surfaces/LabCard";
-import LabButton from "@/components/inputs/LabButton";
+import { LabButton, LabWarnButton } from "@/components/inputs/LabButton";
 import LabSearchField from "@/components/inputs/LabSearchField";
 
 import LabCardPagination from "@/sections/LabCardPagination";
@@ -83,6 +83,21 @@ function LabCariInventaris({ items }) {
             lab="Mikrobiologi"
             stock={4}
           />
+          <Box
+            component={Grid}
+            mt={2}
+            container
+            direction="row"
+            justify="flex-end"
+          >
+            <Grid item component={LabWarnButton}>
+              Hapus
+            </Grid>
+            <div style={{ marginLeft: 8 }} />
+            <Grid item component={LabButton}>
+              Edit
+            </Grid>
+          </Box>
         </Grid>
       </Grid>
     </Box>

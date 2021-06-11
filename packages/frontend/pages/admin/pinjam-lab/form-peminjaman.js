@@ -88,7 +88,7 @@ function FormPeminjamanPage() {
             Pratinjau
           </Typography>
           <LabCard title="Form Peminjaman">
-            <LabFormPeminjaman />
+            <LabFormPeminjaman type="preview" />
           </LabCard>
         </Grid>
       </Grid>
