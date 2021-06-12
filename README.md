@@ -31,19 +31,19 @@ Fokus kami adalah menggali lebih dalam mengenai hal yang dibutuhkan oleh para la
 
 **In Depth Interview**
 
-   Kami menetapkan sampel yakni 3 orang tendik laboran, masing-masing merupakan laboran dari laboratorium kimia, laboratorium biologi dan laboratorium biokimia. Kami mengumpulkan kontak laboran tersebut melalui literasi pada web departemen terkait di IPB lalu menanyakan kontak pada rekan mahasiswa yang berkuliah di departemen terkait. Kami melakukan interview by phone ataupun validasi melalui chat dengan laboran selaku narasumber.
+   Kami menetapkan sampel yakni **3** orang tendik laboran, masing-masing merupakan laboran dari laboratorium kimia, laboratorium biologi dan laboratorium biokimia. Kami mengumpulkan kontak laboran tersebut melalui literasi pada web departemen terkait di IPB lalu menanyakan kontak pada rekan mahasiswa yang berkuliah di departemen terkait. Kami melakukan interview by phone ataupun validasi melalui chat dengan laboran selaku narasumber.
 
 Berikut tujuan dari interview yang kami lakukan:
 1. Mengetahui alur prosedur peminjaman dan pemakaian lab pada departemen terkait.
 2. Mengetahui cara laboran melakukan manajemen laboratorium pada departemen terkait.
 3. Mengetahui kendala laboran melakukan manajemen laboratorium departemen terkait.
 
-    Setelah kami melakukan interview dengan tujuan untuk menggali pain yang dirasakan oleh laboran. Kami mendapatkan insight bahwa 2 dari 3 laboran yang kami wawancarai sepakat bahwa mereka mengalami kesulitan dalam menjelaskan keterangan dari alat-alat yang tersedia di lab dikarenakan jumlahnya sangat banyak, dan ketiganya berpendapat bahwa belum tersedia manajemen data alat dan bahan Lab secara digital di laboratorium mereka, maupun terpusat dari IPB University.  Mayoritas kegiatan peminjaman lab pun diawali dengan pengisian form yang disesuaikan dengan aturan departemen masing-masing.
+    Setelah kami melakukan interview dengan tujuan untuk menggali pain yang dirasakan oleh laboran. Kami mendapatkan insight bahwa **2 dari 3** laboran yang kami wawancarai sepakat bahwa mereka mengalami kesulitan dalam menjelaskan keterangan dari alat-alat yang tersedia di lab dikarenakan jumlahnya sangat banyak, dan **ketiganya** berpendapat bahwa belum tersedia manajemen data alat dan bahan Lab secara digital di laboratorium mereka, maupun terpusat dari IPB University.  Mayoritas kegiatan peminjaman lab pun diawali dengan pengisian form yang disesuaikan dengan aturan departemen masing-masing.
 
 
 **User Story**
 
-   Sebagai seorang laboran di IPB saya ingin sebuah wadah yang dapat membantu saya menginformasikan keterangan dan ketersediaan stok bahan dan peralatan di laboratorium. Serta membantu request peminjaman lab. Agar para mahasiswa dapat melakukan peminjaman lab secara terstruktur, serta mahasiswa dapat mengetahui informasi ketersediaan alat bahan serta peralatan di lab tanpa harus bertanya kepada saya terlebih dahulu.
+   Sebagai seorang laboran di IPB saya ingin sebuah wadah yang dapat membantu saya menginformasikan **keterangan dan ketersediaan stok** bahan dan peralatan di laboratorium. Serta membantu request **peminjaman lab**. Agar para mahasiswa dapat melakukan peminjaman lab secara terstruktur, serta mahasiswa dapat mengetahui informasi ketersediaan alat bahan serta peralatan di lab tanpa harus bertanya kepada saya terlebih dahulu.
 
 
 **Persona**
@@ -56,6 +56,7 @@ Berikut tujuan dari interview yang kami lakukan:
 1. Melakukan pendaftaran request peminjaman laboratorium.
 2. Melakukan pencarian alat dan bahan yang tersedia di laboratorium terkait
 3. Melihat jumlah stok alat dan bahan yang tersedia.
+
 Tentunya sistem ini akan disesuaikan dengan kebutuhan pada lab departemen terkait dan manajemen data laboratorium dikelola oleh admin yang bersangkutan.
 
 
@@ -71,8 +72,8 @@ Tentunya sistem ini akan disesuaikan dengan kebutuhan pada lab departemen terkai
  ![activity](lampiran/activity.png)
 
  **Class diagram**
-
- ![class](lampiran/class.png)
+ 
+ **Informasi Inventaris**
 
  **Entity Relationship Diagram**
 
