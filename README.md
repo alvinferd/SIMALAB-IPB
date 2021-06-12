@@ -74,11 +74,11 @@ Tentunya sistem ini akan disesuaikan dengan kebutuhan pada lab departemen terkai
  **Class diagram**
  **Informasi Inventaris**
  </br>
- ![class](lampiran/Informasi inventaris.png)
+ ![class](lampiran/Informasi_inventaris.png)
  
  **Request Peminjaman**
  </br>
- ![class](lampiran/Request Peminjaman.png)
+ ![class](lampiran/Request_Peminjaman.png)
 
  
  **Informasi Inventaris**
