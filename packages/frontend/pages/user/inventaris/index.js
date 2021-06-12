@@ -1,10 +1,14 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 
 import SimalabLayout from "@/layouts/default";
 import LabCariInventaris from "@/sections/LabCariInventaris";
+import LabPopper from "@/components/utils/LabPopper";
+import { LabListItemLink } from "@/components/data_display/LabListItem";
 import { LabButton, LabButtonDropdown } from "@/components/inputs/LabButton";
-import { ListCariItemDummy } from "@/utils/dummy/ListItemsInventaris";
+import { ListCariItemDummy, ListLabDummy } from "@/utils/dummy/ListItemsInventaris";
+
 
 const listDepartemen = ["Biologi", "Kimia", "Biokimia"];
 
@@ -13,6 +17,15 @@ function UserInventarisPage() {
     useEffect(() => {
         console.log("Departemen State:", departemenState);
     }, [departemenState]);
+
+    const [openPopper, setOpenPopper] = React.useState(false);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [selectedListItem, setSelectedListItem] = React.useState(null);
+
+    const handleClickPilihLab = (event) => {
+        setAnchorEl(event.currentTarget);
+        setOpenPopper((prev) => !prev);
+    };
 
     return (
         <>
@@ -43,12 +56,35 @@ function UserInventarisPage() {
                     </Box>
                 </Grid>
 
-                <Grid item style={{ marginLeft: 44 }}>
+                <Grid item style={{ marginLeft: 140 }}>
                     <Typography variant="h3" component="h2">
-                        Pilih lab
+                        Pilih Lab
                     </Typography>
-                    <Box mt={1.5}>
-                        <LabButtonDropdown>Silahkan pilih lab</LabButtonDropdown>
+                    <LabButtonDropdown
+                        onClick={handleClickPilihLab}
+                        style={{ marginTop: 12 }}
+                    >
+                        {selectedListItem !== null
+                            ? ListLabDummy[selectedListItem]
+                            : "Pilih Lab"}
+                    </LabButtonDropdown>
+                    <Box>
+                        <LabPopper anchorEl={anchorEl} open={openPopper}>
+                            {ListLabDummy.map((item, index) => {
+                                return (
+                                    <LabListItemLink
+                                        text={item}
+                                        onClick={() => {
+                                            setSelectedListItem(index);
+                                            setOpenPopper(false);
+                                        }}
+                                        key={index}
+                                        href="#"
+                                        selected={selectedListItem === index ? true : false}
+                                    />
+                                );
+                            })}
+                        </LabPopper>
                     </Box>
                 </Grid>
             </Grid>

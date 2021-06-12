@@ -17,4 +17,7 @@ a {
 
 .react-calendar__tile--now {
   background: #ff7b76 !important;
+  width: 10%;
+  height: 10%;
+  clip-path: circle();
 }

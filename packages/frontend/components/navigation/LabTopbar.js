@@ -54,7 +54,7 @@ function LabTopbar() {
           </Grid>
           <Box flexGrow={1} />
           <Grid item style={{ marginTop: 2 }}>
-            <Button variant="outlined" size="small" onClick={() => Router.push("/user/pinjam-lab/login")} disableElevation >
+            <Button variant="outlined" size="small" onClick={() => Router.push("/Login/login")} disableElevation >
               Keluar
             </Button>
           </Grid>
