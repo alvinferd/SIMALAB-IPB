@@ -12,12 +12,26 @@ Output dari Simalab IPB diharapkan dapat membantu aktivitas dan manajemen lab IP
 ## Spesifikasi teknis lingkungan pengembangan
 
 **Software**
+- Google Cloud Product VM Instances
+    - n1-standard-2 (2 vCPUs, 7.5 GB memory)
+    - asia-southeast2-a 
+    - Ubuntu 20.04.2.0 LTS
+- docker-compose v1.25.2
+- Docker v19.03.5
+- Windows 10 64 bit
+- Sublime Text v3.2.2    
 
 **Hardware**
+- i5-1135G7 @ 2.40 Ghz ( 8 CPUs)
+- 8GB RAM
+
+
+
 
 **Tech Stack**
 
-- Frontend: NextJS dan Material UI for React
+- Frontend  : NextJS dan Material UI for React
+- Backend   : Django 3.2.4 , djangorestframework 3.12.4
 
 ---
 
@@ -69,50 +83,52 @@ Tentunya sistem ini akan disesuaikan dengan kebutuhan pada lab departemen terkai
 
  **Activity diagram**
 
- ![activity](lampiran/activity.png)
+  ![Activity](lampiran/gabungan.png)
+
+[Link to Activity Diagram on figma](https://www.figma.com/file/a7teoauijvA6np4MsRLbMR/PSBO-Kelompok-5?node-id=5%3A12)
 
  **Class diagram**
- **Informasi Inventaris**
- </br>
- ![class](lampiran/Informasi_inventaris.png)
- 
- **Request Peminjaman**
- </br>
- ![class](lampiran/Request_Peminjaman.png)
 
- 
- **Informasi Inventaris**
+ ![class](lampiran/class.png)
 
  **Entity Relationship Diagram**
 
- ![entity](lampiran/entityrelational.png)
+[Link to Entity Relational](ipb.link/psbo-entity-kel5)
 
  **Arsitektur sistem**
 
  ![arsitektur](lampiran/arsitektur.png)
 
- **Fungsi utama yang dikembangkan**
+---
 
- **Fungsi CRUD**
+## Implementation and Unit Testing
+
+
+**Konsep OOP yang Digunakan**
+
+   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+**Tipe Desain Pengembangan**
+
+   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+**Implementasi SIMALAB API**
+
+   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+**Fitur dan Tampilan Aplikasi**
+
+   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
 ---
 
-## Konsep OOP yang digunakan
-aaaaaaaaaaaaaaaaaaaaa
+## Integration and System Testing
+
 
 ---
 
-## Tipe desain pengembangan yang digunakan (Pattern/Anti Pattern)
-aaaaaaaaaaaaaaaaaaaaa
 
----
-
-## Hasil implementasi perangkat lunak
-![gambar](lampiran/ss1.png)
-![gambar](lampiran/ss2.png)
-![gambar](lampiran/ss3.png)
-
-**Link aplikasi (jika sudah di deploy)**
+## Deployment
 
 ---
 
