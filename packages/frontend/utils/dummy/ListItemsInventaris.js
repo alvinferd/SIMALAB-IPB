@@ -43,5 +43,21 @@ const ListCariItemDummy = [
     image: "/images/microscope.jpg",
   },
 ];
+const ListRequestItemDummy = [
+  {
+    id: 0,
+    title: "Mikroskop",
+    subtitle: "Mikroskop Cahaya",
+    jenis: "Alat",
+    image: "/images/microscope.jpg",
+  },
+  {
+    id: 1,
+    title: "Mikroskop",
+    subtitle: "Mikroskop Cahaya",
+    jenis: "Alat",
+    image: "/images/microscope.jpg",
+  },
+]
 
-export { ListLabDummy, ListCariItemDummy };
+export { ListLabDummy, ListCariItemDummy, ListRequestItemDummy };

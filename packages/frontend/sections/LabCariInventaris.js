@@ -43,6 +43,7 @@ function LabCariInventaris({ items }) {
                           subtitle={item.subtitle}
                           image={item.image}
                           jenis={item.jenis}
+                          button="Keterangan"
                         />
                       </Box>
                     </>
@@ -62,6 +63,7 @@ function LabCariInventaris({ items }) {
                           subtitle={item.subtitle}
                           image={item.image}
                           jenis={item.jenis}
+                          button="Keterangan"
                         />
                       </Box>
                     </>

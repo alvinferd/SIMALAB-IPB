@@ -28,38 +28,61 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LabPeminjamanAlat = ({ type, viewRequest = false }) => {
+const LabPeminjamanAlat = ({ items }) => {
     const classes = useStyles();
-    const isPreview = type === "preview" ? true : false;
     return (
         <Box className={classes.textField}>
             <Box className={classes.section1}>
                 <Grid item xs={12}>
-                    <LabFormField placeholder="Search" readOnly={isPreview} />
+                    <LabFormField placeholder="Search" />
                 </Grid>
                 <Box mt={3}>
                     <Typography variant="h4" component="div">
                         Seluruh Alat
                     </Typography>
                 </Box>
-                <Box mt={2} className={classes.container}>
-                    <Grid item xs={12}>
-                        <LabCardAlatInstrumen
-                            title="Mikroskop"
-                            subtitle="Mikroskop Cahaya"
-                            jenis="Alat"
-                            image="/images/microscope.jpg"
-                        />
+                <Grid container xs={12}>
+                    <Grid item xs={6}>
+                        {items.map((item, index) => {
+                            if (index % 2) {
+                                return (
+                                    <>
+                                        <Box mt={2} mr={2}>
+                                            <LabCardAlatInstrumen
+                                                key={item.title}
+                                                title={item.title}
+                                                subtitle={item.subtitle}
+                                                image={item.image}
+                                                jenis={item.jenis}
+                                                button="Tambah"
+                                            />
+                                        </Box>
+                                    </>
+                                );
+                            }
+                        })}
                     </Grid>
-                    <Grid item xs={12}>
-                        <LabCardAlatInstrumen
-                            title="Mikroskop"
-                            subtitle="Mikroskop Cahaya"
-                            jenis="Alat"
-                            image="/images/microscope.jpg"
-                        />
+                    <Grid item xs={6}>
+                        {items.map((item, index) => {
+                            if (!(index % 2)) {
+                                return (
+                                    <>
+                                        <Box mt={2}>
+                                            <LabCardAlatInstrumen
+                                                key={item.title}
+                                                title={item.title}
+                                                subtitle={item.subtitle}
+                                                image={item.image}
+                                                jenis={item.jenis}
+                                                button="Tambah"
+                                            />
+                                        </Box>
+                                    </>
+                                );
+                            }
+                        })}
                     </Grid>
-                </Box>
+                </Grid>
                 <Box mt={3}>
                     <Typography variant="h4" component="div">
                         Alat yang kamu pinjam

@@ -35,8 +35,11 @@ const useStyles = makeStyles(() => ({
     },
   },
   image: {
-    width: 96,
-    height: 96,
+    width: 84,
+    height: 84,
+    paddingTop: 8,
+    paddingBottom: 8,
+    marginLeft: 16
   },
   img: {
     margin: "auto",
@@ -44,6 +47,9 @@ const useStyles = makeStyles(() => ({
     maxWidth: "100%",
     maxHeight: "100%",
   },
+  button: {
+    paddingLeft: 32
+  }
 }));
 
 function LabCard({
@@ -82,6 +88,7 @@ function LabCardAlatInstrumen({
   subtitle,
   jenis,
   image,
+  button,
   onButtonClick,
 }) {
   const classes = useStyles();
@@ -133,7 +140,7 @@ function LabCardAlatInstrumen({
                 style={{ marginTop: 4, fontSize: 11 }}
                 onClick={onButtonClick}
               >
-                Keterangan
+                {button}
               </LabButton>
             </Grid>
           </Grid>
@@ -155,22 +162,20 @@ function LabCardRequestAlat({ title, margin = 16 }) {
           titleTypographyProps={{ variant: "h4", component: "h4" }}
         />
 
-        <Grid container spacing={2} justify="center" alignItems="center">
-          <Grid item xs={3}>
-            <ButtonBase className={classes.image}>
+        <Grid container xs={12} direction="row" justify="space-around" alignItems="center">
+          <Grid item xs={3} justify="center">
+            <ButtonBase className={classes.img}>
               <img
-                className={classes.img}
+                className={classes.image}
                 alt="complex"
                 src="/images/microscope.jpg"
-                p={0}
               />
             </ButtonBase>
           </Grid>
 
           <Grid
-            item
-            xs={3}
             container
+            xs={3}
             direction="column"
             alignItems="center"
             spacing={2}
@@ -194,7 +199,7 @@ function LabCardRequestAlat({ title, margin = 16 }) {
                 <RemoveIcon style={{ fontSize: 11 }} />
               </LabButton>
               <LabButton>
-                <Typography align="center">
+                <Typography align="center" >
                   {count}
                 </Typography>
               </LabButton>
@@ -209,10 +214,9 @@ function LabCardRequestAlat({ title, margin = 16 }) {
             </ButtonGroup>
           </Grid>
 
-          <Grid item xs={3}>
-            <LabWarnButton size="small">Hapus</LabWarnButton>
+          <Grid item xs={3} className={classes.button}>
+            <LabWarnButton size="small" >Hapus</LabWarnButton>
           </Grid>
-
         </Grid>
       </Card>
     </div>
