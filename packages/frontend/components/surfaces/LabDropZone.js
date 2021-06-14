@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ButtonSave = ({ onSave }) => {
+const ButtonSave = ({ onSave, type }) => {
   return (
     <Grid container justify="flex-end">
-      <Button variant="contained" color="primary" onClick={onSave}>
+      <Button variant="contained" color="primary" onClick={onSave} type={type}>
         Simpan
       </Button>
     </Grid>

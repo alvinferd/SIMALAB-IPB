@@ -5,7 +5,7 @@ import { ListRequestItemDummy } from "@/utils/dummy/ListItemsInventaris";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 import LabCard from "@/components/surfaces/LabCard";
-import LabFormPeminjaman from "@/sections/LabFormPeminjaman";
+import LabRequestPeminjaman from "@/sections/LabRequestFormPeminjaman";
 import LabPeminjamanAlat from "@/sections/LabPeminjamanAlatInstrumen";
 import SimalabLayout from "@/layouts/default";
 import useStyles from "../../admin/pinjam-lab/form-peminjaman"
@@ -53,7 +53,7 @@ const requestPeminjamanUser = () => {
                 </Grid>
                 <Grid item xs={6}>
                     <LabCard title="Form Peminjaman">
-                        <LabFormPeminjaman />
+                        <LabRequestPeminjaman />
                     </LabCard>
                 </Grid>
             </Grid>
