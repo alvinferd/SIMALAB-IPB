@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from simalab.core.serializers import orangSerializer,MhsSerializer,adminlabSerializer,laborSerializer,kategoriSerializer,alatSerializer,submisiSerializer,peminjamanSerializer,templateSerializer
+from simalab.core.serializers import orangSerializer,MhsSerializer,adminlabSerializer,laborSerializer,kategoriSerializer,alatSerializer,CUDalatSerializer,submisiSerializer,CUDsubmisiSerializer,peminjamanSerializer,templateSerializer
 from simalab.core.models import User,Mahasiswa,AdminLab,Laboratorium,KategoriAlat,AlatLab,Form_Submisi,PeminjamanRuangan,TemplateForm
 
 class orangView(viewsets.ModelViewSet):
@@ -27,8 +27,16 @@ class alatView(viewsets.ModelViewSet):
     serializer_class = alatSerializer
     queryset = AlatLab.objects.all()
 
+class CUDalatView(viewsets.ModelViewSet):
+    serializer_class = CUDalatSerializer
+    queryset = AlatLab.objects.all()
+
 class submisiView(viewsets.ModelViewSet):
     serializer_class = submisiSerializer
+    queryset = Form_Submisi.objects.all()
+
+class CUDsubmisiView(viewsets.ModelViewSet):
+    serializer_class = CUDsubmisiSerializer
     queryset = Form_Submisi.objects.all()
 
 class peminjamanView(viewsets.ModelViewSet):
