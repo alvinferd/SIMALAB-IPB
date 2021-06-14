@@ -31,9 +31,32 @@ function LabCardInventaris({ title, subtitle, type, code, lab, stock, src }) {
         pb={0}
         mb={2}
       >
-        <Box position="relative" height={160} width={160}>
-          <Image src={src} alt={TimeToLeave} layout="fill" objectFit="cover" />
-        </Box>
+        {src === "" ? (
+          <>
+            <Box
+              position="relative"
+              height={160}
+              width={160}
+              border="2px dashed"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <Typography variant="h3" component="span">
+                Gambar
+              </Typography>
+            </Box>
+          </>
+        ) : (
+          <Box position="relative" height={160} width={160}>
+            <Image
+              src={src}
+              alt={TimeToLeave}
+              layout="fill"
+              objectFit="cover"
+            />
+          </Box>
+        )}
         <Box textAlign="center" mt={2} mb={1}>
           <Typography variant="h4" component="p">
             {title}

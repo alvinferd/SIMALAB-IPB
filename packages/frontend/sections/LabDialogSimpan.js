@@ -12,7 +12,7 @@ function LabDialogSimpan({ open, onClick, onClose }) {
           Setelah anda menekan tombol <strong>'simpan'</strong> maka segala
           bentuk perubahan yang tertera di pratinjau akan dipublikasikan
         </Typography>
-        <Box mt={2} component={LabButton} onClick={onClick}>
+        <Box mt={2} component={LabButton} onClick={onClick} type="submit">
           Simpan
         </Box>
       </LabDialog>

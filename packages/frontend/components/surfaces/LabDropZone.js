@@ -19,7 +19,16 @@ const ButtonSave = ({ onSave }) => {
   );
 };
 
-const LabDropZone = ({ title, subtitle, type, onSave }) => {
+const LabDropZone = ({
+  title,
+  subtitle,
+  type,
+  onSave,
+  onlyImage,
+  onChange,
+  helperText = "Tahan dan lepaskan fail di sini atau klik",
+  ...props
+}) => {
   const classes = useStyles();
   return (
     <>
@@ -31,7 +40,12 @@ const LabDropZone = ({ title, subtitle, type, onSave }) => {
           {subtitle}
         </Typography>
         <Box mt={1.5}>
-          <DropzoneArea />
+          <DropzoneArea
+            acceptedFiles={onlyImage === true ? ["image/*"] : null}
+            dropzoneText={helperText}
+            onChange={onChange}
+            {...props}
+          />
         </Box>
       </Box>
       <ButtonSave onSave={onSave} type={type} />
