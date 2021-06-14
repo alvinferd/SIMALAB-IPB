@@ -69,6 +69,7 @@ class AlatLab(models.Model):
     id_alat = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,)
     NamaAlat = models.CharField(max_length=100, blank=False, null=False)
     Quantity = models.IntegerField(default = 0)
+    SubInv = models.CharField(max_length=100, blank=False, null=True)    
     kategori_id = models.ForeignKey(KategoriAlat, on_delete=models.CASCADE)
     lab_id = models.ForeignKey(Laboratorium, on_delete=models.CASCADE)
     gambarAlat = models.FileField(upload_to='static/uploads/alat/',null=True)

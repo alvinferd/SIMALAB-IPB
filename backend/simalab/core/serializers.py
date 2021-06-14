@@ -31,8 +31,7 @@ class alatSerializer(serializers.ModelSerializer):
     lab_id = laborSerializer()
     class Meta:
         model = AlatLab
-        fields = ('id_alat','NamaAlat','Quantity','gambarAlat','kategori_id','lab_id')
-
+        fields = ('id_alat','NamaAlat','Quantity','SubInv','gambarAlat','kategori_id','lab_id')
     def create(self, validated_data):
         contact_data = validated_data.pop('kategori_id')  
         contact = KategoriAlat.objects.create(**contact_data)
@@ -41,6 +40,11 @@ class alatSerializer(serializers.ModelSerializer):
         contact = Laboratorium.objects.create(**contact_data)
         alat = AlatLab.objects.create(lab_id=contact, **validated_data)
         return alat
+
+class CUDalatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlatLab
+        fields = ('id_alat','NamaAlat','Quantity','SubInv','gambarAlat','kategori_id','lab_id')
 
 class submisiSerializer(serializers.ModelSerializer):
     user_id = MhsSerializer()
@@ -56,6 +60,11 @@ class submisiSerializer(serializers.ModelSerializer):
         contact = Mahasiswa.objects.create(**contact_data)
         alat = Form_Submisi.objects.create(user_id=contact, **validated_data)
         return alat
+
+class CUDsubmisiSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Form_Submisi
+        fields = ('id_form','judulPenelitian','no_hp','dosbing','date_form','date_peminjaman','file1','file2','Verifikasi','Status','user_id','ruangan_id')
 
 class peminjamanSerializer(serializers.ModelSerializer):
     class Meta:

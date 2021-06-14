@@ -4,35 +4,25 @@ import { useRouter } from "next/router";
 import { Button, Grid, Typography } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
-import baseApi from "@/utils/api";
+import { useSelector } from "react-redux";
+import { dispatch } from "@/utils/redux/store";
+import { inventarisByIdGet } from "@/utils/redux/slice/inventaris";
+
 import SimalabLayout from "@/layouts/default";
 import LabFormInventaris from "@/sections/LabFormInventaris";
 
 function AdminEditInventarisPage() {
   const router = useRouter();
-  const [inventaris, setInventaris] = useState(null);
-
-  const inventarisByIdGet = async () => {
-    const id_edit = router.query.id;
-
-    return baseApi
-      .get(`/alat/${id_edit}`)
-      .then((data) => {
-        console.log(data);
-        setInventaris(data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
 
   useEffect(() => {
-    inventarisByIdGet();
+    dispatch(inventarisByIdGet(router.query.id));
   }, []);
 
+  const dataInventarisById = useSelector((state) => state.inventaris.byId);
+
   useEffect(() => {
-    console.log("inventaris", inventaris);
-  }, [inventaris]);
+    console.log("inventaris", dataInventarisById);
+  }, [dataInventarisById]);
 
   return (
     <>
@@ -59,7 +49,9 @@ function AdminEditInventarisPage() {
           </Grid>
         </Grid>
       </Button>
-      {inventaris ? <LabFormInventaris items={inventaris} /> : null}
+      {dataInventarisById ? (
+        <LabFormInventaris items={dataInventarisById} />
+      ) : null}
     </>
   );
 }

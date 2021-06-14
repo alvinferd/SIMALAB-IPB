@@ -25,7 +25,7 @@ SECRET_KEY = '$$^tvi@+##=po5p$jshlqm9rd17xiiys)(_!og%shcjcz**xi8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['34.101.142.194', 'localhost']
+ALLOWED_HOSTS = ['34.101.142.194', 'localhost', 'simalab.bintangfikriguska.my.id']
 
 
 # Application definition
