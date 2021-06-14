@@ -83,7 +83,7 @@ Tentunya sistem ini akan disesuaikan dengan kebutuhan pada lab departemen terkai
 
  **Activity diagram**
 
-  ![Activity](lampiran/gabungan.png)
+  ![Activity](lampiran/Activity_Diagrams.png)
 
 [Link to Activity Diagram on figma](https://www.figma.com/file/a7teoauijvA6np4MsRLbMR/PSBO-Kelompok-5?node-id=5%3A12)
 
