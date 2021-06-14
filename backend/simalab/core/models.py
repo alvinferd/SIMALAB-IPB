@@ -71,7 +71,7 @@ class AlatLab(models.Model):
     Quantity = models.IntegerField(default = 0)
     kategori_id = models.ForeignKey(KategoriAlat, on_delete=models.CASCADE)
     lab_id = models.ForeignKey(Laboratorium, on_delete=models.CASCADE)
-    gambarAlat = models.FileField(upload_to='uploads/alat/',null=True)
+    gambarAlat = models.FileField(upload_to='static/uploads/alat/',null=True)
 
     def __str__(self):
         return self.NamaAlat
@@ -83,8 +83,8 @@ class Form_Submisi(models.Model):
     dosbing = models.CharField(max_length=100, blank=False, null=False)
     date_form = models.DateField()
     date_peminjaman = models.DateField()    
-    file1 = models.FileField(upload_to='uploads/submisi/',null=True)
-    file2 = models.FileField(upload_to='uploads/submisi/',null=True)
+    file1 = models.FileField(upload_to='static/uploads/submisi/',null=True)
+    file2 = models.FileField(upload_to='static/uploads/submisi/',null=True)
     Verifikasi = models.BooleanField(default=False)
     Status = models.BooleanField(null=True)
     user_id = models.ForeignKey(Mahasiswa, on_delete=models.CASCADE)
@@ -107,7 +107,7 @@ class PeminjamanRuangan(models.Model):
 class TemplateForm(models.Model):
     id_template = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,)
     nama_form = models.CharField(max_length=100, blank=False, null=False)
-    file = models.FileField(upload_to='uploads/templates/')
+    file = models.FileField(upload_to='static/uploads/templates/')
     departemenlab = models.CharField(max_length=100, blank=False, null=False)
 
     def __str__(self):
