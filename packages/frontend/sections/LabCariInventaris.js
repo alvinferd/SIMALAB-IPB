@@ -1,8 +1,10 @@
-import React from "react";
+import Link from "next/link";
+
+import React, { useEffect } from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { LabCardAlatInstrumen } from "@/components/surfaces/LabCard";
+import { LabCard, LabCardAlatInstrumen } from "@/components/surfaces/LabCard";
 import { LabButton, LabWarnButton } from "@/components/inputs/LabButton";
 import LabSearchField from "@/components/inputs/LabSearchField";
 
@@ -19,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function LabCariInventaris({ items }) {
+  const [selectedInventaris, setSelectedInventaris] = React.useState(null);
+
+  const handleButtonKeterangan = (_event, index) => {
+    setSelectedInventaris(items[index]);
+  };
+
   return (
     <Box mt={4}>
       <Typography variant="h3" component="h2">
@@ -31,44 +39,23 @@ function LabCariInventaris({ items }) {
           <Grid container spacing={2} style={{ marginLeft: 0 }}>
             <LabSearchField />
             <LabButton>Filter</LabButton>
-            <Grid item xs={6}>
+            <Grid container item xs={12} spacing={1} style={{ marginTop: 16 }}>
               {items.map((item, index) => {
-                if (index % 2) {
-                  return (
-                    <>
-                      <Box mt={2}>
-                        <LabCardAlatInstrumen
-                          key={item.title}
-                          title={item.title}
-                          subtitle={item.subtitle}
-                          image={item.image}
-                          jenis={item.jenis}
-                          button="Keterangan"
-                        />
-                      </Box>
-                    </>
-                  );
-                }
-              })}
-            </Grid>
-            <Grid item xs={6}>
-              {items.map((item, index) => {
-                if (!(index % 2)) {
-                  return (
-                    <>
-                      <Box mt={2}>
-                        <LabCardAlatInstrumen
-                          key={item.title}
-                          title={item.title}
-                          subtitle={item.subtitle}
-                          image={item.image}
-                          jenis={item.jenis}
-                          button="Keterangan"
-                        />
-                      </Box>
-                    </>
-                  );
-                }
+                return (
+                  <Grid item xs={6}>
+                    <LabCardAlatInstrumen
+                      key={item.NamaAlat}
+                      title={item.NamaAlat}
+                      subtitle={item.NamaAlat}
+                      image={item.gambarAlat}
+                      jenis={item.kategori_id.Kategori}
+                      button="Keterangan"
+                      onButtonClick={(event) =>
+                        handleButtonKeterangan(event, index)
+                      }
+                    />
+                  </Grid>
+                );
               })}
             </Grid>
             <LabCardPagination />
@@ -76,15 +63,22 @@ function LabCariInventaris({ items }) {
         </Grid>
 
         <Grid item xs={6}>
-          <LabCardInventaris
-            title="Mikroskop"
-            subtitle="Mikroskop Cahaya"
-            src="/images/microscope.jpg"
-            type={["Alat"]}
-            code={24}
-            lab="Mikrobiologi"
-            stock={4}
-          />
+          {selectedInventaris === null ? (
+            <LabCard title="Keterangan">
+              <Typography>Belum ada alat yang dipilih.</Typography>
+            </LabCard>
+          ) : (
+            <LabCardInventaris
+              title={selectedInventaris.NamaAlat}
+              subtitle={selectedInventaris.NamaAlat}
+              src={selectedInventaris.gambarAlat}
+              type={selectedInventaris.kategori_id.Kategori}
+              code={24}
+              lab={selectedInventaris.lab_id.ruangan}
+              stock={selectedInventaris.Quantity}
+            />
+          )}
+
           <Box
             component={Grid}
             mt={2}
@@ -92,12 +86,25 @@ function LabCariInventaris({ items }) {
             direction="row"
             justify="flex-end"
           >
-            <Grid item component={LabWarnButton}>
-              Hapus
+            <Grid item>
+              <LabWarnButton>Hapus</LabWarnButton>
             </Grid>
             <div style={{ marginLeft: 8 }} />
-            <Grid item component={LabButton}>
-              Edit
+            <Grid item>
+              <LabButton>
+                <Link
+                  href={
+                    selectedInventaris === null
+                      ? ""
+                      : {
+                          pathname: "inventaris/edit-inventaris",
+                          query: { id: selectedInventaris.id_alat },
+                        }
+                  }
+                >
+                  Edit
+                </Link>
+              </LabButton>
             </Grid>
           </Box>
         </Grid>

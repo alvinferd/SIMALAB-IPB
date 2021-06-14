@@ -1,20 +1,36 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Box, Grid, Typography } from "@material-ui/core";
+
+import { useSelector } from "react-redux";
+import { dispatch } from "@/utils/redux/store";
+import { inventarisGet } from "@/utils/redux/slice/inventaris";
+import { labGet } from "@/utils/redux/slice/lab";
 
 import SimalabLayout from "@/layouts/default";
 import { LabListItemLink } from "@/components/data_display/LabListItem";
 import { LabButton, LabButtonDropdown } from "@/components/inputs/LabButton";
 import LabPopper from "@/components/utils/LabPopper";
 import LabCariInventaris from "@/sections/LabCariInventaris";
-import {
-  ListLabDummy,
-  ListCariItemDummy,
-} from "@/utils/dummy/ListItemsInventaris";
 
 function AdminInventarisPage() {
-  const [openPopper, setOpenPopper] = React.useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [selectedListItem, setSelectedListItem] = React.useState(null);
+  useEffect(() => {
+    dispatch(inventarisGet());
+    dispatch(labGet());
+  }, []);
+
+  const dataInventaris = useSelector((state) =>
+    state.inventaris.data.map((item) => ({
+      ...item,
+    }))
+  );
+
+  const dataLab = useSelector((state) =>
+    state.lab.data.map((item) => item.ruangan)
+  );
+
+  const [openPopper, setOpenPopper] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedListItem, setSelectedListItem] = useState(null);
 
   const handleClickPilihLab = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,12 +64,12 @@ function AdminInventarisPage() {
             style={{ marginTop: 12 }}
           >
             {selectedListItem !== null
-              ? ListLabDummy[selectedListItem]
+              ? dataLab[selectedListItem]
               : "Pilih Lab"}
           </LabButtonDropdown>
           <Box>
             <LabPopper anchorEl={anchorEl} open={openPopper}>
-              {ListLabDummy.map((item, index) => {
+              {dataLab.map((item, index) => {
                 return (
                   <LabListItemLink
                     text={item}
@@ -71,7 +87,7 @@ function AdminInventarisPage() {
           </Box>
         </Grid>
       </Grid>
-      <LabCariInventaris items={ListCariItemDummy} />
+      <LabCariInventaris items={dataInventaris} />
     </>
   );
 }

@@ -12,9 +12,11 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
 import LabDropZone from "@/components/surfaces/LabDropZone";
 import LabFormField from "@/components/inputs/LabFormField";
 import { ListLabDummy } from "@/utils/dummy/ListItemsInventaris";
+import { useSelector } from "react-redux";
 
 import LabDialogSimpan from "@/sections/LabDialogSimpan";
 import LabCardInventaris from "@/sections/LabCardInventaris";
@@ -28,16 +30,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LabFormInventaris() {
+function LabFormInventaris({ items }) {
   const classes = useStyles();
+  const dataLab = useSelector((state) =>
+    state.lab.data.map((item) => ({
+      ...item,
+    }))
+  );
+
   const { register, watch, control, handleSubmit } = useForm({
     defaultValues: {
-      kategoriInventaris: [{ name: "Alat" }],
+      NamaAlat: items.NamaAlat,
+      jenisInventaris: items.NamaAlat,
+      lab_id: items.lab_id.ruangan,
+      kodeBarang: "Kode Barang",
+      Quantity: items.Quantity,
+      kategori_id: items.kategori_id.Kategori,
     },
-  });
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "kategoriInventaris",
   });
 
   const watchAllFields = watch();
@@ -45,6 +54,9 @@ function LabFormInventaris() {
   console.log("watchAllFields:", watchAllFields);
 
   const [openSaveDialog, setOpenSaveDialog] = React.useState(false);
+  React.useEffect(() => {
+    console.log("items", items);
+  }, [items]);
 
   const handleClickSave = () => {
     setOpenSaveDialog(true);
@@ -61,9 +73,8 @@ function LabFormInventaris() {
             <Grid container spacing={2}>
               <Grid item xs={8}>
                 <Controller
-                  name="namaInventaris"
+                  name="NamaAlat"
                   control={control}
-                  defaultValue="Nama Inventaris"
                   render={({ field: { onChange, value } }) => (
                     <LabFormField
                       title="Nama Alat/Bahan"
@@ -75,7 +86,6 @@ function LabFormInventaris() {
                 <Controller
                   name="jenisInventaris"
                   control={control}
-                  defaultValue="Jenis Inventaris"
                   render={({ field: { onChange, value } }) => (
                     <LabFormField
                       title="Jenis Alat/Bahan"
@@ -86,23 +96,24 @@ function LabFormInventaris() {
                 />
                 <Box mb={2}>
                   <Controller
-                    name="jenisLab"
+                    name="lab_id"
                     control={control}
-                    defaultValue="Jenis Lab"
                     render={({ field: { onChange, value } }) => (
                       <FormControl variant="outlined">
                         <Box mb={1}>
                           <Typography>Lab</Typography>
                         </Box>
                         <Select
-                          labelId="jenisLabSelectLabel"
-                          id="jenisLabSelect"
+                          labelId="lab_idLabel"
+                          id="lab_idSelect"
                           fullWidth
                           value={value}
                           onChange={onChange}
                         >
-                          {ListLabDummy.map((item) => (
-                            <MenuItem value={item}>{item}</MenuItem>
+                          {dataLab.map((item) => (
+                            <MenuItem value={item.id_labor}>
+                              {item.ruangan}
+                            </MenuItem>
                           ))}
                         </Select>
                       </FormControl>
@@ -114,7 +125,6 @@ function LabFormInventaris() {
                 <Controller
                   name="kodeBarang"
                   control={control}
-                  defaultValue="Kode Barang"
                   render={({ field: { onChange, value } }) => (
                     <LabFormField
                       title="Kode Barang"
@@ -124,9 +134,8 @@ function LabFormInventaris() {
                   )}
                 />
                 <Controller
-                  name="jumlahStok"
+                  name="Quantity"
                   control={control}
-                  defaultValue={0}
                   render={({ field: { onChange, value } }) => (
                     <LabFormField
                       title="Jumlah Stok"
@@ -154,38 +163,27 @@ function LabFormInventaris() {
                 justify="flex-start"
                 alignItems="center"
               >
-                {watchAllFields.kategoriInventaris.map((item, index) => {
-                  return (
-                    <Chip
+                <Chip
+                  className={classes.kategoriChip}
+                  color="primary"
+                  variant="outlined"
+                  label={watchAllFields.kategori_id}
+                  onDelete={() => remove(0)}
+                />
+
+                <Controller
+                  name="kategori_id"
+                  control={control}
+                  render={({ field }) => (
+                    <LabFormField
                       className={classes.kategoriChip}
-                      color="primary"
-                      variant="outlined"
-                      key={item.index}
-                      label={item.name}
-                      onDelete={() => remove(index)}
+                      type="text"
+                      {...field}
+                      style={{ width: "18ch" }}
                     />
-                  );
-                })}
-                {fields.map((item, index) => {
-                  return (
-                    <>
-                      <Controller
-                        key={item.id}
-                        name={`kategoriInventaris.${index}.name`}
-                        control={control}
-                        defaultValue="Tambah kategori"
-                        render={({ field }) => (
-                          <LabFormField
-                            className={classes.kategoriChip}
-                            type="text"
-                            {...field}
-                            style={{ width: "18ch" }}
-                          />
-                        )}
-                      />
-                    </>
-                  );
-                })}
+                  )}
+                />
+
                 <IconButton
                   color="primary"
                   onClick={() => {
@@ -216,14 +214,15 @@ function LabFormInventaris() {
           <Typography variant="h4" component="h3">
             Pratinjau
           </Typography>
+
           <LabCardInventaris
-            title={watchAllFields.namaInventaris}
+            title={watchAllFields.NamaAlat}
             subtitle={watchAllFields.jenisInventaris}
             src="/images/microscope.jpg"
-            type={watchAllFields.kategoriInventaris}
+            type={watchAllFields.kategori_id}
             code={watchAllFields.kodeBarang}
-            lab={watchAllFields.jenisLab}
-            stock={watchAllFields.jumlahStok}
+            lab={dataLab.filter(watchAllFields.lab_id).ruangan}
+            stock={watchAllFields.Quantity}
           />
         </Grid>
       </Grid>

@@ -43,17 +43,12 @@ function LabCardInventaris({ title, subtitle, type, code, lab, stock, src }) {
           </Typography>
         </Box>
         <Grid container item xs={12} justify="center">
-          {type.map((item, index) => {
-            return (
-              <Chip
-                className={classes.kategoriChip}
-                color="primary"
-                variant="outlined"
-                key={item.index}
-                label={item.name}
-              />
-            );
-          })}
+          <Chip
+            className={classes.kategoriChip}
+            color="primary"
+            variant="outlined"
+            label={type}
+          />
         </Grid>
       </Box>
       <Grid container className={classes.detailItem}>

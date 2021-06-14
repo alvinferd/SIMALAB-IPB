@@ -2,6 +2,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import Head from "next/head";
 import "../styles/globals.css";
 
+import { Provider } from "react-redux";
+import store, { persistor } from "@/utils/redux/store";
+
 const Noop = ({ children }) => children;
 
 function MyApp({ Component, pageProps }) {
@@ -17,7 +20,7 @@ function MyApp({ Component, pageProps }) {
   };
 
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <title>{title} | SIMALAB</title>
         {/* Primary */}
@@ -41,7 +44,7 @@ function MyApp({ Component, pageProps }) {
           </motion.div>
         </AnimatePresence>
       </Layout>
-    </>
+    </Provider>
   );
 }
 

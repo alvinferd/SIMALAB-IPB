@@ -1,11 +1,39 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+
 import { Button, Grid, Typography } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
+import baseApi from "@/utils/api";
 import SimalabLayout from "@/layouts/default";
 import LabFormInventaris from "@/sections/LabFormInventaris";
-import LabCardInventaris from "@/sections/LabCardInventaris";
 
 function AdminEditInventarisPage() {
+  const router = useRouter();
+  const [inventaris, setInventaris] = useState(null);
+
+  const inventarisByIdGet = async () => {
+    const id_edit = router.query.id;
+
+    return baseApi
+      .get(`/alat/${id_edit}`)
+      .then((data) => {
+        console.log(data);
+        setInventaris(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  useEffect(() => {
+    inventarisByIdGet();
+  }, []);
+
+  useEffect(() => {
+    console.log("inventaris", inventaris);
+  }, [inventaris]);
+
   return (
     <>
       <Button
@@ -31,25 +59,10 @@ function AdminEditInventarisPage() {
           </Grid>
         </Grid>
       </Button>
-      <Grid container spacing={3} style={{ marginTop: 12 }}>
-        <Grid item xs={6}>
-          <LabFormInventaris />
-        </Grid>
-        <Grid item xs={6}>
-          <LabCardInventaris
-            title="Mikroskop"
-            subtitle="Mikroskop Cahaya"
-            src="/images/microscope.jpg"
-            type={["Alat"]}
-            code={24}
-            lab="Mikrobiologi"
-            stock={4}
-          />
-        </Grid>
-      </Grid>
+      {inventaris ? <LabFormInventaris items={inventaris} /> : null}
     </>
   );
 }
-AdminFormInventarisPage.title = "Tambah Inventaris";
-AdminFormInventarisPage.Layout = SimalabLayout;
-export default AdminFormInventarisPage;
+AdminEditInventarisPage.title = "Edit Inventaris";
+AdminEditInventarisPage.Layout = SimalabLayout;
+export default AdminEditInventarisPage;
