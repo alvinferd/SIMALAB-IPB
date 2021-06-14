@@ -3,7 +3,7 @@
 ![SIMALAB_logo](lampiran/logo.png)
 
 ---
-[Deskripsi](*-Deskripsi-Aplikasi) | [Lingkungan Pengembangan](*-Lingkungan-Pengembangan) | [User Research](*-User-Research-&-Analysis) | [Sistem Design](*-Sistem-Design) | [Implementation and Unit Testing](*-Implementation-and-Unit-Testing) | [Integration and System Testing](*-Integration-and-System-Testing) | [Deployment](*-Deployment) | [Saran](*-Saran) | 
+[Deskripsi Aplikasi](#-deskripsi-aplikasi) | [Lingkungan Pengembangan](#-lingkungan-pengembangan) | [User Research](#-user-research-&-analysis) | [Sistem Design](#-sistem-design) | [Implementation and Unit Testing](#-implementation-and-unit-testing) | [Integration and System Testing](#-integration-and-system-testing) | [Deployment](#-deployment) | [Saran](#-saran) | 
 :---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
 
 ---
