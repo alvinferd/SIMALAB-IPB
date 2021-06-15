@@ -25,10 +25,10 @@ __Software__
     - n1-standard-2 (2 vCPUs, 7.5 GB memory)
     - asia-southeast2-a 
     - Ubuntu 20.04.2.0 LTS
-- docker-compose v1.25.2
-- Docker v19.03.5
 - Windows 10 64 bit
 - Sublime Text v3.2.2    
+- Visual Code Studio v1.57
+- Figma
 ```
 __Hardware__
 ```
@@ -38,7 +38,8 @@ __Hardware__
 __Tech Stack__
 ```
 - Frontend  : NextJS dan Material UI for React
-- Backend   : Django 3.2.4 , djangorestframework 3.12.4
+- Backend   : Django 3.2.4 , djangorestframework 3.12.4 , SQLite database  
+- Server    : Nginx/1.18.0
 ```
 ---
 
@@ -113,11 +114,107 @@ Berikut tujuan dari interview yang kami lakukan:
 
 **Konsep OOP yang Digunakan**
 
-   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+   ***Classs***|
+--------------|
+```
+aaa
+aaaaaaaa
+```
+
+   ***Object***|
+--------------|   
+```
+aaa
+aaaaaaaa
+```
+
+   ***Method***|
+--------------|
+```
+aaa
+aaaaaaaa
+```
+
+   ***Abstract***|
+--------------|
+```
+aaa
+aaaaaaaa
+```
+
+   ***Polymorphism***|
+--------------|
+```
+aaa
+aaaaaaaa
+```
 
 **Tipe Desain Pengembangan**
 
+```
    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+```
+
+**Fitur dan Tampilan Aplikasi**
+
+   ***Login Page***|
+--------------|   
+```
+aaa
+aaaaaaaa
+```
+
+   ***Dashboard User***|
+--------------|   
+```
+aaa
+aaaaaaaa
+```
+
+   ***Informasi Peralatan Lab***|
+--------------|   
+```
+aaa
+aaaaaaaa
+```
+
+   ***Form Peminjaman***|
+--------------|   
+```
+aaa
+aaaaaaaa
+```
+
+   ***Dashboard Admin***|
+--------------|   
+```
+aaa
+aaaaaaaa
+```
+
+   ***Manage , Verfikasi Request Peminjaman***|
+--------------|   
+```
+aaa
+aaaaaaaa
+```
+
+
+   ***Manage Inventaris Lab***|
+--------------|   
+```
+aaa
+aaaaaaaa
+```
+
+---
+
+
+## 🚀 Deployment
+
+**Website SIMALAB IPB**
+
+https://simalab.bintangfikriguska.my.id
 
 **Endpoint SIMALAB API**
 
@@ -135,16 +232,6 @@ Berikut tujuan dari interview yang kami lakukan:
 | https://api-simalab.bintangfikriguska.my.id/CUDsubmisiPeminjaman/	| Create,Delete,Update data Form Peminjaman	| POST,PATCH,PUT,DELETE     | 
 | https://api-simalab.bintangfikriguska.my.id/jadwalPeminjaman/		   | CRUD jadwal peminjaman terverifikasi	     | GET,POST,PATCH,PUT,DELETE | 							
 | https://api-simalab.bintangfikriguska.my.id/templateForm/			      | CRUD template berkas form	                | GET,POST,PATCH,PUT,DELETE | 
-
-
-**Fitur dan Tampilan Aplikasi**
-
-   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
----
-
-
-## 🚀 Deployment
 
 ---
 
