@@ -30,7 +30,7 @@ const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-  devTools: true,
+  // devTools: true,
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware(persistDefaultMiddlewareConfig).concat(logger);
     // return getDefaultMiddleware(persistDefaultMiddlewareConfig);

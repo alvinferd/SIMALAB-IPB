@@ -13,16 +13,16 @@ import LabFormInventaris from "@/sections/LabFormInventaris";
 
 function AdminEditInventarisPage() {
   const router = useRouter();
-
+  // console.log(router);
   useEffect(() => {
     dispatch(inventarisByIdGet(router.query.id));
   }, []);
 
   const dataInventarisById = useSelector((state) => state.inventaris.byId);
 
-  useEffect(() => {
-    console.log("inventaris", dataInventarisById);
-  }, [dataInventarisById]);
+  // useEffect(() => {
+  //   console.log("inventaris", dataInventarisById);
+  // }, [dataInventarisById]);
 
   return (
     <>
@@ -49,12 +49,13 @@ function AdminEditInventarisPage() {
           </Grid>
         </Grid>
       </Button>
-      {dataInventarisById ? (
-        <LabFormInventaris items={dataInventarisById} />
+      {dataInventarisById !== [] ? (
+        <LabFormInventaris items={dataInventarisById} type="edit" />
       ) : null}
     </>
   );
 }
+
 AdminEditInventarisPage.title = "Edit Inventaris";
 AdminEditInventarisPage.Layout = SimalabLayout;
 export default AdminEditInventarisPage;

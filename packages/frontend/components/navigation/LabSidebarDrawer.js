@@ -48,9 +48,9 @@ function LabSidebarDrawer() {
   const userName = useSelector((state) => state.user.current.username);
 
   const [selectedRoute, setSelectedRoute] = useState(router.pathname);
-  useEffect(() => {
-    console.log(router.pathname.split("/")[1]);
-  }, [selectedRoute]);
+  // useEffect(() => {
+  //   console.log(router.pathname.split("/")[1]);
+  // }, [selectedRoute]);
 
   const handleListItemClick = (_event, item) => {
     setSelectedRoute(item);

@@ -24,11 +24,11 @@ export const kategoriGet = createAsyncThunk(
     return baseApi
       .get("/kategoriAlat")
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         dispatch(kategoritSet(data));
       })
       .catch((err) => {
-        console.log(err.message);
+        // console.log(err.message);
       })
       .finally(() => dispatch(loadingSet(false)));
   }

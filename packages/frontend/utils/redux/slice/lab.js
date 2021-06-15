@@ -22,11 +22,11 @@ export const labGet = createAsyncThunk("lab/fetch", async (_, { dispatch }) => {
   return baseApi
     .get("/lab")
     .then((data) => {
-      console.log("lab", data);
+      // console.log("lab", data);
       dispatch(labSet(data));
     })
     .catch((err) => {
-      console.log(err.message);
+      // console.log(err.message);
     })
     .finally(() => dispatch(loadingSet(false)));
 });

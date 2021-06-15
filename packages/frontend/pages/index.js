@@ -13,7 +13,7 @@ function LabIndexPage() {
 
   useEffect(() => {
     if (authenticated) {
-      console.log("admin:", isUserAdmin, "mahasiswa:", isUserMahasiswa);
+      // console.log("admin:", isUserAdmin, "mahasiswa:", isUserMahasiswa);
       if (isUserAdmin) router.replace("/admin");
       if (isUserMahasiswa) router.replace("/user");
     } else {

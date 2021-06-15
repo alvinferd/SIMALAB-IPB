@@ -57,7 +57,7 @@ export const userGetData = createAsyncThunk(
         );
       })
       .catch((err) => {
-        console.log(err.message);
+        // console.log(err.message);
       })
       .finally(() => dispatch(loadingSet(false)));
   }

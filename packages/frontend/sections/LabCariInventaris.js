@@ -31,9 +31,9 @@ const useStyles = makeStyles((theme) => ({
 function LabCariInventaris({ items, id_lab }) {
   const [selectedInventaris, setSelectedInventaris] = React.useState(null);
   const loadingState = useSelector((state) => state.loading);
-  React.useEffect(() => {
-    console.log("id_lab", id_lab);
-  }, [id_lab]);
+  // React.useEffect(() => {
+  //   console.log("id_lab", id_lab);
+  // }, [id_lab]);
 
   const handleButtonKeterangan = (_event, index) => {
     setSelectedInventaris(items[index]);

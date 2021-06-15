@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CustomTheme from "@/themes/default";
 import LabFormField from "@/components/inputs/LabFormField";
 import LabButton from "@/components/inputs/LabButton";
+import LabLoading from "@/components/feedback/LabLoading";
 
 import { useSelector } from "react-redux";
 import { dispatch } from "@/utils/redux/store";
@@ -50,22 +51,24 @@ function Login() {
   const isUserMahasiswa = useSelector(
     (state) => state.user.current.is_mahasiswa
   );
+  const loadingState = useSelector((state) => state.loading);
 
   useEffect(() => {
     if (authenticated) {
-      console.log("admin:", isUserAdmin, "mahasiswa:", isUserMahasiswa);
+      // console.log("admin:", isUserAdmin, "mahasiswa:", isUserMahasiswa);
       if (isUserAdmin) router.replace("/admin");
       if (isUserMahasiswa) router.replace("/user");
     }
   }, [authenticated, isUserAdmin, isUserMahasiswa]);
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     dispatch(userLogin(data));
   };
 
   return (
     <ThemeProvider theme={CustomTheme}>
+      <LabLoading open={loadingState} />
       <Grid
         container
         spacing={3}

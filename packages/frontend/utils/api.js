@@ -7,28 +7,28 @@ export const TOKEN_KEY = "dG9rZW5TaW1hbGFi";
 function handleRequestSend(config) {
   const token = Cookie.get(TOKEN_KEY);
   if (!!token) config.headers.Authorization = `Token ${token}`;
-  console.dir(config);
+  // console.dir(config);
   return config;
 }
 
 function handleRequestError(error) {
-  console.dir(error);
+  // console.dir(error);
   return Promise.reject(error);
 }
 
 function handleResponseReceive(response) {
-  console.dir(response);
+  // console.dir(response);
   return response.data;
 }
 
 function handleResponseError(error) {
-  console.dir(error);
+  // console.dir(error);
   return Promise.reject(error.response ? error.response.data : error);
 }
 
 const baseApi = axios.create({
   // baseURL: "https://34.101.142.194",
-  baseURL: "http://localhost:8000",
+  baseURL: "https://api-simalab.bintangfikriguska.my.id",
   headers: {
     post: {
       "Content-Type": "multipart/form-data",

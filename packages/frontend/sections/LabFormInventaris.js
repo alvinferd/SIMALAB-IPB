@@ -10,8 +10,9 @@ import {
   MenuItem,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 
-import LabDropZone from "@/components/surfaces/LabDropZone";
+import LabDialogAlert from "@/components/feedback/LabAlert";
 import LabFormField from "@/components/inputs/LabFormField";
 import LabButton from "@/components/inputs/LabButton";
 import convertKodeBarang from "@/utils/tools/convertKodeBarang";
@@ -19,7 +20,7 @@ import convertKodeBarang from "@/utils/tools/convertKodeBarang";
 import { useSelector } from "react-redux";
 import { dispatch } from "@/utils/redux/store";
 import {
-  inventarisByIdUpdate,
+  inventarisByIdEdit,
   inventarisPost,
 } from "@/utils/redux/slice/inventaris";
 import { kategoriGet } from "@/utils/redux/slice/kategori";
@@ -83,6 +84,7 @@ const PreviewForm = ({ watchAllFields, dataLab }) => {
 
 function LabFormInventaris({ items, kosongan = false, type }) {
   const classes = useStyles();
+  const fileInput = React.createRef();
 
   React.useEffect(() => {
     dispatch(kategoriGet());
@@ -106,30 +108,38 @@ function LabFormInventaris({ items, kosongan = false, type }) {
   );
 
   const watchAllFields = watch();
-  console.log("watchAllFields:", watchAllFields);
+  // console.log("watchAllFields:", watchAllFields);
 
   const [openSaveDialog, setOpenSaveDialog] = React.useState(false);
 
-  const handleClickSave = () => {
-    setOpenSaveDialog(true);
-  };
-
   const handleClickApply = (value) => {
-    console.log("Ongoing Submit:", value);
+    // console.log("Ongoing Submit:", value);
     // dispatch(inventarisByIdUpdate({data: value, id: route.query.id}));
-    type === "add"
-      ? dispatch(
-          inventarisPost({
-            NamaAlat: value.NamaAlat,
-            lab_id: value.lab_id,
-            SubInv: value.SubInv,
-            Quantity: value.Quantity,
-            kategori_id: value.kategori_id,
-            gambarAlat: value.gambarAlat,
-            // gambarAlat: fileRef.current.files[0],
-          })
-        )
-      : null;
+    if (type === "add") {
+      dispatch(
+        inventarisPost({
+          NamaAlat: value.NamaAlat,
+          lab_id: value.lab_id,
+          SubInv: value.SubInv,
+          Quantity: value.Quantity,
+          kategori_id: value.kategori_id,
+          gambarAlat: fileInput.current.files[0],
+        })
+      );
+    }
+    if (type === "edit") {
+      dispatch(
+        inventarisByIdEdit({
+          id_alat: items.id_alat,
+          NamaAlat: value.NamaAlat,
+          lab_id: value.lab_id,
+          SubInv: value.SubInv,
+          Quantity: value.Quantity,
+          kategori_id: value.kategori_id,
+          gambarAlat: fileInput.current.files[0],
+        })
+      );
+    }
     setOpenSaveDialog(false);
   };
 
@@ -137,7 +147,10 @@ function LabFormInventaris({ items, kosongan = false, type }) {
     <>
       <Grid container spacing={3} style={{ marginTop: 12 }}>
         <Grid item xs={6}>
-          <form onSubmit={handleSubmit(handleClickApply)}>
+          <form
+            onSubmit={handleSubmit(handleClickApply)}
+            enctype="multipart/form-data"
+          >
             <Grid container spacing={2}>
               <Grid item xs={8}>
                 <Controller
@@ -236,39 +249,22 @@ function LabFormInventaris({ items, kosongan = false, type }) {
               />
             </Box>
             <Box mt={3}>
-              <Controller
+              <Typography
+                variant="h4"
+                component="p"
+                style={{ marginBottom: 8 }}
+              >
+                Upload gambar Alat
+              </Typography>
+              <input
                 name="gambarAlat"
-                control={control}
-                render={({ field: { onChange } }) => (
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => onChange(e.target.files[0])}
-                    // onChange={onChange}
-                  />
-                  // <LabDropZone
-                  //   title="Upload Foto Alat/Bahan"
-                  //   onSave={handleClickSave}
-                  //   type="submit"
-                  //   onlyImage
-                  //   helperText="Tahan dan lepaskan fail gambar di sini atau klik"
-                  //   filesLimit={1}
-                  //   // value={value}
-                  //   onChange={(files) => {
-                  //     console.log("Files:", files);
-                  //     onChange;
-                  //   }}
-                  //   // onChange={(files) => console.log("Files:", files)}
-                  // />
-                )}
+                type="file"
+                accept="image/*"
+                ref={fileInput}
+                style={{ marginBottom: 28 }}
               />
             </Box>
             <LabButton type="submit">Submit</LabButton>
-            <LabDialogSimpan
-              open={openSaveDialog}
-              onClick={handleSubmit(handleClickApply)}
-              onClose={() => setOpenSaveDialog(false)}
-            />
           </form>
         </Grid>
 

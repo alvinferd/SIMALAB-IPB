@@ -19,17 +19,16 @@ import {
   ListTableWidthColumn,
 } from "@/utils/dummy/ListTableAdminDashboard";
 import { ListLabDummy } from "@/utils/dummy/ListItemsInventaris";
-import TileContent from 'react-calendar/dist/Calendar.css';
+import TileContent from "react-calendar/dist/Calendar.css";
 import CustomTheme from "@/themes/default";
 
 const listDepartemen = ["Biologi", "Kimia", "Biokimia"];
 
-
 function UserPinjamLabPage() {
   const [departemenState, setDepartemenState] = useState(0);
-  useEffect(() => {
-    console.log("Departemen State:", departemenState);
-  }, [departemenState]);
+  // useEffect(() => {
+  //   console.log("Departemen State:", departemenState);
+  // }, [departemenState]);
 
   const [openPopper, setOpenPopper] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -147,14 +146,20 @@ function UserPinjamLabPage() {
               </LabCard>
             </Box>
 
-            <Grid container justify='space-between' alignItems='center'>
+            <Grid container justify="space-between" alignItems="center">
               <Grid item>
                 <Typography variant="body1" color="textSecondary">
                   + Tambah Request Peminjaman laboratorium
                 </Typography>
               </Grid>
               <Grid item>
-                <LabButton size="small" style={{ marginTop: 4 }} onClick={() => Router.push("/user/pinjam-lab/request-peminjaman")}>
+                <LabButton
+                  size="small"
+                  style={{ marginTop: 4 }}
+                  onClick={() =>
+                    Router.push("/user/pinjam-lab/request-peminjaman")
+                  }
+                >
                   Request
                 </LabButton>
               </Grid>
