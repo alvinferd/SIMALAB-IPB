@@ -139,7 +139,7 @@ class KategoriAlat(models.Model):
         return self.Kategori
 ```
 
-   ***Abstract***|
+   ***Abstraction***|
 --------------|
 
 Abstraction adalah teknik untuk hanya menampilkan informasi yang perlu ditampilkan pada suatu objek, informasi-informasi yang tidak perlu tidak akan ditampikan.
