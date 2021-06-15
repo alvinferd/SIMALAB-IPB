@@ -1,6 +1,6 @@
 import baseApi from "@/utils/api";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loadingSet } from "./loading";
+import { loadingSet } from "@/utils/redux/slice/loading";
 
 const kategoriSlice = createSlice({
   name: "kategori",

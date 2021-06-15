@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Cookie from "js-cookie";
 import baseApi, { TOKEN_KEY } from "@/utils/api";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loadingSet } from "./loading";
+import { loadingSet } from "@/utils/redux/slice/loading";
 
 const userSlice = createSlice({
   name: "user",

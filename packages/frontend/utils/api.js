@@ -27,7 +27,8 @@ function handleResponseError(error) {
 }
 
 const baseApi = axios.create({
-  baseURL: "http://34.101.142.194:31337/",
+  // baseURL: "https://34.101.142.194",
+  baseURL: "http://localhost:8000",
   headers: {
     post: {
       "Content-Type": "multipart/form-data",

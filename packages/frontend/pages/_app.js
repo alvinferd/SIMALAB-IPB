@@ -10,7 +10,7 @@ import LabLoading from "@/components/feedback/LabLoading";
 
 function PeristWrapper({ children }) {
   return (
-    <PersistGate loading={<LabLoading />} persistor={persistor}>
+    <PersistGate loading={<LabLoading open={true} />} persistor={persistor}>
       {children}
     </PersistGate>
   );

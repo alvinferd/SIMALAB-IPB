@@ -5,7 +5,9 @@ import CustomTheme from "@/themes/default";
 
 import LabSidebarDrawer from "@/components/navigation/LabSidebarDrawer";
 import LabTopbar from "@/components/navigation/LabTopbar";
+import LabLoading from "@/components/feedback/LabLoading";
 
+import { useSelector } from "react-redux";
 import CheckAuth from "@/utils/hooks/checkAuth";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,8 +21,12 @@ const useStyles = makeStyles((theme) => ({
 function SimalabLayout({ children }) {
   CheckAuth();
   const classes = useStyles();
+  const loadingState = useSelector((state) => state.loading);
+
   return (
     <ThemeProvider theme={CustomTheme}>
+      {/* {loading ? <LabLoading /> : null} */}
+      <LabLoading open={loadingState} />
       <Box className={classes.container}>
         <LabSidebarDrawer />
         <Box width="100%">
