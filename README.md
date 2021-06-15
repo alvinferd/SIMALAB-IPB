@@ -119,9 +119,23 @@ Berikut tujuan dari interview yang kami lakukan:
 
    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
-**Implementasi SIMALAB API**
+**Endpoint SIMALAB API**
 
-   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+| Endpoint API | Fungsi | Method |
+| :---         | :---  | :---   |
+| https://api-simalab.bintangfikriguska.my.id/api-token-auth/       | Create Token                              | POST                      |
+| https://api-simalab.bintangfikriguska.my.id/orang/				            | Read data User                            | GET						                 | 
+| https://api-simalab.bintangfikriguska.my.id/mahasiswa/			         | Read data Mahasiswa                       | GET						                 | 
+| https://api-simalab.bintangfikriguska.my.id/pegawai/				          | Read data Pegawai                         | GET						                 | 
+| https://api-simalab.bintangfikriguska.my.id/lab/					             | CRUD data lab                             | GET,POST,PATCH,PUT,DELETE | 
+| https://api-simalab.bintangfikriguska.my.id/kategoriAlat/			      | CRUD data kagetori alat                   | GET,POST,PATCH,PUT,DELETE	| 
+| https://api-simalab.bintangfikriguska.my.id/alat/					            | Read data alat+related_FK						           | GET                       | 
+| https://api-simalab.bintangfikriguska.my.id/CUDalat/				          | Create,Delete,Update alat		               | POST,PATCH,PUT,DELETE     | 
+| https://api-simalab.bintangfikriguska.my.id/submisiPeminjaman/	   | Read data Form Peminjaman + related FK				| GET                       | 
+| https://api-simalab.bintangfikriguska.my.id/CUDsubmisiPeminjaman/	| Create,Delete,Update data Form Peminjaman	| POST,PATCH,PUT,DELETE     | 
+| https://api-simalab.bintangfikriguska.my.id/jadwalPeminjaman/		   | CRUD jadwal peminjaman terverifikasi	     | GET,POST,PATCH,PUT,DELETE | 							
+| https://api-simalab.bintangfikriguska.my.id/templateForm/			      | CRUD template berkas form	                | GET,POST,PATCH,PUT,DELETE | 
+
 
 **Fitur dan Tampilan Aplikasi**
 
