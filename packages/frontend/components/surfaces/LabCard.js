@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 import {
   Grid,
@@ -150,14 +150,22 @@ function LabCardAlatInstrumen({
   );
 }
 
-function LabCardRequestAlat({ title, margin = 16 }) {
+function LabCardRequestAlat({
+  title,
+  subtitle,
+  jenis,
+  image,
+  onButtonClick,
+  margin = 16
+}) {
   const classes = useStyles();
   const [count, setCount] = React.useState(1);
+
   return (
     <div className={classes.root}>
       <Card elevation={0} variant="outlined" style={{ marginBottom: margin }}>
         <CardHeader
-          title={title}
+          title={jenis}
           className={classes.header}
           titleTypographyProps={{ variant: "h4", component: "h4" }}
         />
@@ -168,7 +176,7 @@ function LabCardRequestAlat({ title, margin = 16 }) {
               <img
                 className={classes.image}
                 alt="complex"
-                src="/images/microscope.jpg"
+                src={image}
               />
             </ButtonBase>
           </Grid>
@@ -181,10 +189,10 @@ function LabCardRequestAlat({ title, margin = 16 }) {
             spacing={2}
           >
             <Typography variant="h4" component="p">
-              Mikroskop
+              {title}
             </Typography>
             <Typography variant="subtitle2" color="textSecondary" component="p">
-              Mikroskop cahaya
+              {subtitle}
             </Typography>
           </Grid>
 
@@ -215,7 +223,7 @@ function LabCardRequestAlat({ title, margin = 16 }) {
           </Grid>
 
           <Grid item xs={3} className={classes.button}>
-            <LabWarnButton size="small" >Hapus</LabWarnButton>
+            <LabWarnButton size="small" onClick={onButtonClick} >Hapus</LabWarnButton>
           </Grid>
         </Grid>
       </Card>

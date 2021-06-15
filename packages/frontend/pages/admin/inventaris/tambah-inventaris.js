@@ -34,7 +34,7 @@ function AdminFormInventarisPage() {
           </Grid>
         </Grid>
       </Button>
-      <LabFormInventaris />
+      <LabFormInventaris items={[]} kosongan />
     </>
   );
 }

@@ -1,4 +1,5 @@
-import { Grid, Typography, TextField, Box, Button } from "@material-ui/core";
+import React, { useState } from 'react';
+import { Grid, Typography, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import LabFormField from "@/components/inputs/LabFormField";
@@ -30,6 +31,12 @@ const useStyles = makeStyles((theme) => ({
 
 const LabPeminjamanAlat = ({ items }) => {
     const classes = useStyles();
+    const [selectedInventaris, setSelectedInventaris] = React.useState(null);
+
+    const handleButtonTambah = (_event, index) => {
+        setSelectedInventaris(items[index]);
+    };
+
     return (
         <Box className={classes.textField}>
             <Box className={classes.section1}>
@@ -41,47 +48,24 @@ const LabPeminjamanAlat = ({ items }) => {
                         Seluruh Alat
                     </Typography>
                 </Box>
-                <Grid container xs={12}>
-                    <Grid item xs={6}>
-                        {items.map((item, index) => {
-                            if (index % 2) {
-                                return (
-                                    <>
-                                        <Box mt={2} mr={2}>
-                                            <LabCardAlatInstrumen
-                                                key={item.title}
-                                                title={item.title}
-                                                subtitle={item.subtitle}
-                                                image={item.image}
-                                                jenis={item.jenis}
-                                                button="Tambah"
-                                            />
-                                        </Box>
-                                    </>
-                                );
-                            }
-                        })}
-                    </Grid>
-                    <Grid item xs={6}>
-                        {items.map((item, index) => {
-                            if (!(index % 2)) {
-                                return (
-                                    <>
-                                        <Box mt={2}>
-                                            <LabCardAlatInstrumen
-                                                key={item.title}
-                                                title={item.title}
-                                                subtitle={item.subtitle}
-                                                image={item.image}
-                                                jenis={item.jenis}
-                                                button="Tambah"
-                                            />
-                                        </Box>
-                                    </>
-                                );
-                            }
-                        })}
-                    </Grid>
+                <Grid container xs={12} spacing={1} style={{ marginTop: 16 }}>
+                    {items.map((item, index) => {
+                        return (
+                            <Grid item xs={6}>
+                                <LabCardAlatInstrumen
+                                    key={item.title}
+                                    title={item.title}
+                                    subtitle={item.subtitle}
+                                    image={item.image}
+                                    jenis={item.jenis}
+                                    button="Tambah"
+                                    onButtonClick={(event) =>
+                                        handleButtonTambah(event, index)
+                                    }
+                                />
+                            </Grid>
+                        );
+                    })}
                 </Grid>
                 <Box mt={3}>
                     <Typography variant="h4" component="div">
@@ -90,8 +74,16 @@ const LabPeminjamanAlat = ({ items }) => {
                 </Box>
                 <Box mt={2}>
                     <GridList cellHeight={180} className={classes.gridList}>
-                        <LabCardRequestAlat title="Alat" />
-                        <LabCardRequestAlat title="Alat" />
+                        {selectedInventaris === null ? (
+                            <Typography>Belum ada alat yang dipilih.</Typography>
+                        ) : (
+                            <LabCardRequestAlat
+                                title={selectedInventaris.title}
+                                subtitle={selectedInventaris.subtitle}
+                                jenis={selectedInventaris.jenis}
+                                image={selectedInventaris.image}
+                            />
+                        )}
                     </GridList>
                 </Box>
             </Box>
@@ -112,7 +104,7 @@ const LabPeminjamanAlat = ({ items }) => {
                     </Grid>
                 </Box>
             </Box>
-        </Box>
+        </Box >
     )
 }
 

@@ -5,8 +5,6 @@ import {
   Box,
   Grid,
   Typography,
-  IconButton,
-  Chip,
   FormControl,
   Select,
   MenuItem,
@@ -15,8 +13,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import LabDropZone from "@/components/surfaces/LabDropZone";
 import LabFormField from "@/components/inputs/LabFormField";
-import { ListLabDummy } from "@/utils/dummy/ListItemsInventaris";
+import convertKodeBarang from "@/utils/tools/convertKodeBarang";
+
 import { useSelector } from "react-redux";
+import { dispatch } from "@/utils/redux/store";
+import { inventarisByIdUpdate } from "@/utils/redux/slice/inventaris";
 
 import LabDialogSimpan from "@/sections/LabDialogSimpan";
 import LabCardInventaris from "@/sections/LabCardInventaris";
@@ -30,46 +31,72 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LabFormInventaris({ items }) {
+const propsForm = (items, kode_barang, kosongan) => {
+  return {
+    defaultValues: {
+      NamaAlat: kosongan ? "" : items.NamaAlat,
+      jenisInventaris: kosongan ? "" : items.NamaAlat,
+      lab_id: kosongan ? "" : items.lab_id.id_labor,
+      kodeBarang: kosongan ? "" : kode_barang,
+      Quantity: kosongan ? "" : items.Quantity,
+      kategori_id: kosongan ? "" : items.kategori_id.Kategori,
+    },
+  };
+};
+
+const PreviewForm = ({ watchAllFields, dataLab }) => {
+  return (
+    <LabCardInventaris
+      title={watchAllFields.NamaAlat}
+      subtitle={watchAllFields.jenisInventaris}
+      // src="/images/microscope.jpg"
+      src=""
+      type={watchAllFields.kategori_id}
+      code={watchAllFields.kodeBarang}
+      lab={watchAllFields.lab_id}
+      lab={
+        dataLab.filter((item) => item.id_labor === watchAllFields.lab_id)[0]
+          .ruangan
+      }
+      stock={watchAllFields.Quantity}
+    />
+  );
+};
+
+function LabFormInventaris({ items, kosongan = false }) {
   const classes = useStyles();
+
   const dataLab = useSelector((state) =>
     state.lab.data.map((item) => ({
       ...item,
     }))
   );
 
-  const { register, watch, control, handleSubmit } = useForm({
-    defaultValues: {
-      NamaAlat: items.NamaAlat,
-      jenisInventaris: items.NamaAlat,
-      lab_id: items.lab_id.ruangan,
-      kodeBarang: "Kode Barang",
-      Quantity: items.Quantity,
-      kategori_id: items.kategori_id.Kategori,
-    },
-  });
+  const kode_barang = kosongan ? "0" : convertKodeBarang(items.id_alat);
+  const { register, watch, control, handleSubmit } = useForm(
+    propsForm(items, kode_barang)
+  );
 
   const watchAllFields = watch();
-  const onSubmit = (data) => console.log(data);
   console.log("watchAllFields:", watchAllFields);
 
   const [openSaveDialog, setOpenSaveDialog] = React.useState(false);
-  React.useEffect(() => {
-    console.log("items", items);
-  }, [items]);
 
   const handleClickSave = () => {
     setOpenSaveDialog(true);
   };
-  const handleClickApply = () => {
-    setOpenSaveDialog(close);
+
+  const handleClickApply = (value) => {
+    console.log("Ongoing Submit:", value);
+    // dispatch(inventarisByIdUpdate({data: value, id: route.query.id}));
+    setOpenSaveDialog(false);
   };
 
   return (
     <>
       <Grid container spacing={3} style={{ marginTop: 12 }}>
         <Grid item xs={6}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(handleClickApply)}>
             <Grid container spacing={2}>
               <Grid item xs={8}>
                 <Controller
@@ -122,16 +149,10 @@ function LabFormInventaris({ items }) {
                 </Box>
               </Grid>
               <Grid item xs={4}>
-                <Controller
-                  name="kodeBarang"
-                  control={control}
-                  render={({ field: { onChange, value } }) => (
-                    <LabFormField
-                      title="Kode Barang"
-                      value={value}
-                      onChange={onChange}
-                    />
-                  )}
+                <LabFormField
+                  title="Kode Barang"
+                  value={kode_barang}
+                  disabled
                 />
                 <Controller
                   name="Quantity"
@@ -163,14 +184,6 @@ function LabFormInventaris({ items }) {
                 justify="flex-start"
                 alignItems="center"
               >
-                <Chip
-                  className={classes.kategoriChip}
-                  color="primary"
-                  variant="outlined"
-                  label={watchAllFields.kategori_id}
-                  onDelete={() => remove(0)}
-                />
-
                 <Controller
                   name="kategori_id"
                   control={control}
@@ -183,47 +196,41 @@ function LabFormInventaris({ items }) {
                     />
                   )}
                 />
-
-                <IconButton
-                  color="primary"
-                  onClick={() => {
-                    append({ name: "Kategori Tambahan" });
-                  }}
-                  style={{ width: 32, height: 32 }}
-                >
-                  +
-                </IconButton>
               </Grid>
             </Box>
             <Box mt={3}>
-              <LabDropZone
-                title="Upload Foto Alat/Bahan"
-                onSave={handleClickSave}
-                type="submit"
+              <Controller
+                name="gambarAlat"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <LabDropZone
+                    title="Upload Foto Alat/Bahan"
+                    onSave={handleClickSave}
+                    type="submit"
+                    onlyImage
+                    helperText="Tahan dan lepaskan fail gambar di sini atau klik"
+                    filesLimit={1}
+                    value={value}
+                    onChange={onChange}
+                    // onChange={(files) => console.log("Files:", files)}
+                  />
+                )}
               />
             </Box>
+            <LabDialogSimpan
+              open={openSaveDialog}
+              onClick={handleSubmit(handleClickApply)}
+              onClose={() => setOpenSaveDialog(false)}
+            />
           </form>
         </Grid>
-        <LabDialogSimpan
-          open={openSaveDialog}
-          onClick={handleClickApply}
-          onClose={() => setOpenSaveDialog(false)}
-        />
 
         <Grid item xs={6}>
           <Typography variant="h4" component="h3">
             Pratinjau
           </Typography>
 
-          <LabCardInventaris
-            title={watchAllFields.NamaAlat}
-            subtitle={watchAllFields.jenisInventaris}
-            src="/images/microscope.jpg"
-            type={watchAllFields.kategori_id}
-            code={watchAllFields.kodeBarang}
-            lab={dataLab.filter(watchAllFields.lab_id).ruangan}
-            stock={watchAllFields.Quantity}
-          />
+          <PreviewForm watchAllFields={watchAllFields} dataLab={dataLab} />
         </Grid>
       </Grid>
     </>

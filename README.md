@@ -3,8 +3,8 @@
 ![SIMALAB_logo](lampiran/logo.png)
 
 ---
-[Deskripsi Aplikasi](#-deskripsi-aplikasi) | [Lingkungan Pengembangan](#-lingkungan-pengembangan) | [User Research](#-user-research-&-analysis) | [Sistem Design](#-sistem-design) | [Implementation and Unit Testing](#-implementation-and-unit-testing) | [Integration and System Testing](#-integration-and-system-testing) | [Deployment](#-deployment) | [Saran](#-saran) | 
-:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:
+[Deskripsi Aplikasi](#-deskripsi-aplikasi) | [Lingkungan Pengembangan](#-lingkungan-pengembangan) | [User Research and Analysis](#-user-research-and-analysis) | [Sistem Design](#-sistem-design) | [Implementation and Unit Testing](#-implementation-and-unit-testing)| [Deployment](#-deployment) | [Saran](#-saran) | 
+:---:|:---:|:---:|:---:|:---:|:---:|:---:
 
 ---
 
@@ -17,9 +17,10 @@ __Output dari Simalab IPB__
 
 ---
 
-## 🏙️ Lingkungan Pengembangan
+## 🚧 Lingkungan Pengembangan
 
 __Software__
+```
 - Google Cloud Product VM Instances
     - n1-standard-2 (2 vCPUs, 7.5 GB memory)
     - asia-southeast2-a 
@@ -28,19 +29,20 @@ __Software__
 - Docker v19.03.5
 - Windows 10 64 bit
 - Sublime Text v3.2.2    
-
+```
 __Hardware__
+```
 - i5-1135G7 @ 2.40 Ghz ( 8 CPUs)
 - 8GB RAM
-
+```
 __Tech Stack__
-
+```
 - Frontend  : NextJS dan Material UI for React
 - Backend   : Django 3.2.4 , djangorestframework 3.12.4
-
+```
 ---
 
-## 🙋 User Research & Analysis
+## 🙋 User Research and Analysis
 
 __Desk Research__
 
@@ -106,7 +108,7 @@ Berikut tujuan dari interview yang kami lakukan:
 
 ---
 
-## 🚀 Implementation and Unit Testing
+## 👾 Implementation and Unit Testing
 
 
 **Konsep OOP yang Digunakan**
@@ -127,13 +129,8 @@ Berikut tujuan dari interview yang kami lakukan:
 
 ---
 
-## 🔌 Integration and System Testing
 
-
----
-
-
-## ⚙️ Deployment
+## 🚀 Deployment
 
 ---
 
@@ -171,13 +168,13 @@ Berikut tujuan dari interview yang kami lakukan:
             <td>UI Designer,Front end</td>
         </tr>
         <tr>
-            <td>3</td>
+            <td>4</td>
             <td>Annisa Faradila</td>
             <td>G64180074</td>
             <td>UX Research , UI Designer</td>
         </tr>
         <tr>
-            <td>3</td>
+            <td>5</td>
             <td>Alvin Ferdiansyah</td>
             <td>G64180079</td>
             <td>Backend, Project Manager</td>
