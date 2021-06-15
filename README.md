@@ -115,6 +115,7 @@ Berikut tujuan dari interview yang kami lakukan:
 **Konsep OOP yang Digunakan**
    ***Object***|
 --------------|   
+
 Objek adalah suatu entitas yang memiliki sifat atau karakter dan perilaku tertentu. Contohnya adalah kucing, mobil, manusia, dll. 
 
 contoh penerapan:
