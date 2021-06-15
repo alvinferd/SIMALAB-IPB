@@ -122,8 +122,9 @@ contoh penerapan:
 user_id = MhsSerializer()
 ```
 
-   ***Classs***|
+   ***Class***|
 --------------|
+
 Class merupakan *blueprint* dari objek yang mendefinisikan properti (sifat) dan method (perilaku) dari suatu objek.
 
 contoh penerapan:
@@ -139,6 +140,7 @@ class KategoriAlat(models.Model):
 
    ***Abstract***|
 --------------|
+
 Abstraction adalah teknik untuk hanya menampilkan informasi yang perlu ditampilkan pada suatu objek, informasi-informasi yang tidak perlu tidak akan ditampikan.
 ```
 
@@ -146,7 +148,8 @@ Abstraction adalah teknik untuk hanya menampilkan informasi yang perlu ditampilk
 
    ***Polymorphism***|
 --------------|
-Polimorfisme merupakan konsep oop dimana class memiliki banyak "bentuk" method yang berbeda, meskipun namanya sama.
+
+Polymorphism merupakan konsep oop dimana class memiliki banyak "bentuk" method yang berbeda, meskipun namanya sama.
 
 contoh penerapan:
 ```
