@@ -32,6 +32,7 @@ function LabRequestPeminjaman({ type }) {
                                     <LabFormField
                                         title="Judul Penelitian"
                                         type="text"
+                                        placeholder="Judul Penelitian"
                                         value={value}
                                         onChange={onChange}
                                     />
@@ -45,8 +46,9 @@ function LabRequestPeminjaman({ type }) {
                                 defaultValue=""
                                 render={({ field: { onChange, value } }) => (
                                     <LabFormField
-                                        title="Dosen Pembimbing"
+                                        title="Dosen Pembimbing"                                
                                         type="text"
+                                        placeholder="Nama Dosen Pembimbing"
                                         value={value}
                                         onChange={onChange}
                                     />
@@ -80,6 +82,7 @@ function LabRequestPeminjaman({ type }) {
                                     <LabFormField
                                         title="Laboratorium"
                                         type="text"
+                                        placeholder="Nama Laboratorium"
                                         value={value}
                                         onChange={onChange}
                                     />
