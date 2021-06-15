@@ -25,8 +25,7 @@ __Software__
     - n1-standard-2 (2 vCPUs, 7.5 GB memory)
     - asia-southeast2-a 
     - Ubuntu 20.04.2.0 LTS
-- docker-compose v1.25.2
-- Docker v19.03.5
+- nginx/1.18.0
 - Windows 10 64 bit
 - Sublime Text v3.2.2    
 ```
@@ -119,7 +118,20 @@ Berikut tujuan dari interview yang kami lakukan:
 
    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 
-**Endpoint SIMALAB API**
+
+
+**Fitur dan Tampilan Aplikasi**
+
+   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+---
+
+
+## 🚀 Deployment
+
+https://simalab.bintangfikriguska.my.id
+
+### Endpoint SIMALAB API**
 
 | Endpoint API | Fungsi | Method |
 | :---         | :---  | :---   |
@@ -135,16 +147,6 @@ Berikut tujuan dari interview yang kami lakukan:
 | https://api-simalab.bintangfikriguska.my.id/CUDsubmisiPeminjaman/	| Create,Delete,Update data Form Peminjaman	| POST,PATCH,PUT,DELETE     | 
 | https://api-simalab.bintangfikriguska.my.id/jadwalPeminjaman/		   | CRUD jadwal peminjaman terverifikasi	     | GET,POST,PATCH,PUT,DELETE | 							
 | https://api-simalab.bintangfikriguska.my.id/templateForm/			      | CRUD template berkas form	                | GET,POST,PATCH,PUT,DELETE | 
-
-
-**Fitur dan Tampilan Aplikasi**
-
-   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
----
-
-
-## 🚀 Deployment
 
 ---
 
