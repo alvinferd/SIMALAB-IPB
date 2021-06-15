@@ -6,6 +6,8 @@ import CustomTheme from "@/themes/default";
 import LabSidebarDrawer from "@/components/navigation/LabSidebarDrawer";
 import LabTopbar from "@/components/navigation/LabTopbar";
 
+import CheckAuth from "@/utils/hooks/checkAuth";
+
 const useStyles = makeStyles((theme) => ({
   container: {
     display: "flex",
@@ -15,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SimalabLayout({ children }) {
+  CheckAuth();
   const classes = useStyles();
   return (
     <ThemeProvider theme={CustomTheme}>

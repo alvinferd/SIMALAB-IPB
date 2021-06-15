@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { Box, Drawer, Typography, Divider, List } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { useSelector } from "react-redux";
+
 import LabListItem from "@/components/data_display/LabListItem";
 import {
   ListItemSidebar,
@@ -43,6 +45,8 @@ const useStyles = makeStyles((theme) => ({
 
 function LabSidebarDrawer() {
   const router = useRouter();
+  const userName = useSelector((state) => state.user.current.username);
+
   const [selectedRoute, setSelectedRoute] = useState(router.pathname);
   useEffect(() => {
     console.log(router.pathname.split("/")[1]);
@@ -77,7 +81,7 @@ function LabSidebarDrawer() {
         />
 
         <Typography component="span" variant="body1" style={{ marginLeft: 12 }}>
-          <b>##_USER_NAME</b>
+          <b>{!userName ? "A User" : userName}</b>
         </Typography>
       </Box>
       <Box flexGrow={1} />

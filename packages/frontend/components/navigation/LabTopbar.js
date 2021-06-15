@@ -12,6 +12,9 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import CustomTheme from "@/themes/default";
 
+import { dispatch } from "@/utils/redux/store";
+import { userLogout } from "@/utils/redux/slice/user";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -54,7 +57,12 @@ function LabTopbar() {
           </Grid>
           <Box flexGrow={1} />
           <Grid item style={{ marginTop: 2 }}>
-            <Button variant="outlined" size="small" onClick={() => Router.push("/Login/login")} disableElevation >
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={() => dispatch(userLogout())}
+              disableElevation
+            >
               Keluar
             </Button>
           </Grid>

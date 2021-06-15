@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 import Cookie from "js-cookie";
 import baseApi, { TOKEN_KEY } from "@/utils/api";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -9,8 +11,8 @@ const userSlice = createSlice({
     authenticated: false,
     current: {
       nama: "",
-      is_staff: false,
       is_mahasiswa: false,
+      is_adminLab: false,
     },
   },
   reducers: {
@@ -28,8 +30,8 @@ const userSlice = createSlice({
         authenticated: false,
         current: {
           nama: "",
-          is_staff: false,
           is_mahasiswa: false,
+          is_adminLab: false,
         },
       };
     },
@@ -77,5 +79,14 @@ export const userLogin = createAsyncThunk(
         dispatch(loadingSet(false));
         dispatch(userGetData(data.username));
       });
+  }
+);
+
+export const userLogout = createAsyncThunk(
+  "user/userLogin",
+  async (data, { dispatch }) => {
+    dispatch(loadingSet(true));
+    dispatch(userLoggedOut());
+    dispatch(loadingSet(false));
   }
 );

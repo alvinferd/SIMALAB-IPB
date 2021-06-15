@@ -10,9 +10,9 @@ import CustomTheme from "@/themes/default";
 import LabFormField from "@/components/inputs/LabFormField";
 import LabButton from "@/components/inputs/LabButton";
 
+import { useSelector } from "react-redux";
 import { dispatch } from "@/utils/redux/store";
 import { userLogin } from "@/utils/redux/slice/user";
-import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   dimensi: {
@@ -44,15 +44,25 @@ function Login() {
   const classes = useStyles();
   const router = useRouter();
   const { control, handleSubmit } = useForm();
+
   const authenticated = useSelector((state) => state.user.authenticated);
+  const isUserAdmin = useSelector((state) => state.user.current.is_adminLab);
+  const isUserMahasiswa = useSelector(
+    (state) => state.user.current.is_mahasiswa
+  );
+
+  useEffect(() => {
+    if (authenticated) {
+      console.log("admin:", isUserAdmin, "mahasiswa:", isUserMahasiswa);
+      if (isUserAdmin) router.replace("/admin");
+      if (isUserMahasiswa) router.replace("/user");
+    }
+  }, [authenticated, isUserAdmin, isUserMahasiswa]);
 
   const onSubmit = (data) => {
     console.log(data);
     dispatch(userLogin(data));
   };
-  useEffect(() => {
-    if (authenticated) router.replace("/admin");
-  }, [authenticated]);
 
   return (
     <ThemeProvider theme={CustomTheme}>
