@@ -25,7 +25,7 @@ __Software__
     - n1-standard-2 (2 vCPUs, 7.5 GB memory)
     - asia-southeast2-a 
     - Ubuntu 20.04.2.0 LTS
-- nginx/1.18.0
+- Nginx/1.18.0
 - Windows 10 64 bit
 - Sublime Text v3.2.2    
 ```
@@ -131,7 +131,7 @@ Berikut tujuan dari interview yang kami lakukan:
 
 https://simalab.bintangfikriguska.my.id
 
-### Endpoint SIMALAB API**
+### Endpoint SIMALAB API
 
 | Endpoint API | Fungsi | Method |
 | :---         | :---  | :---   |
