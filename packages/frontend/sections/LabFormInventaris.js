@@ -13,11 +13,16 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import LabDropZone from "@/components/surfaces/LabDropZone";
 import LabFormField from "@/components/inputs/LabFormField";
+import LabButton from "@/components/inputs/LabButton";
 import convertKodeBarang from "@/utils/tools/convertKodeBarang";
 
 import { useSelector } from "react-redux";
 import { dispatch } from "@/utils/redux/store";
-import { inventarisByIdUpdate } from "@/utils/redux/slice/inventaris";
+import {
+  inventarisByIdUpdate,
+  inventarisPost,
+} from "@/utils/redux/slice/inventaris";
+import { kategoriGet } from "@/utils/redux/slice/kategori";
 
 import LabDialogSimpan from "@/sections/LabDialogSimpan";
 import LabCardInventaris from "@/sections/LabCardInventaris";
@@ -31,15 +36,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const propsForm = (items, kode_barang, kosongan) => {
+const propsForm = (items, kode_barang) => {
   return {
     defaultValues: {
-      NamaAlat: kosongan ? "" : items.NamaAlat,
-      jenisInventaris: kosongan ? "" : items.NamaAlat,
-      lab_id: kosongan ? "" : items.lab_id.id_labor,
-      kodeBarang: kosongan ? "" : kode_barang,
-      Quantity: kosongan ? "" : items.Quantity,
-      kategori_id: kosongan ? "" : items.kategori_id.Kategori,
+      NamaAlat: items.NamaAlat,
+      SubInv: items.SubInv,
+      lab_id: items.lab_id.id_labor,
+      Quantity: items.Quantity,
+      kategori_id: items.kategori_id.Kategori,
+      kode_barang: kode_barang,
+    },
+  };
+};
+
+const propsFormKosongan = () => {
+  return {
+    defaultValues: {
+      NamaAlat: "",
+      lab_id: "",
+      SubInv: "",
+      Quantity: "",
+      kategori_id: "",
+      kode_barang: "0",
     },
   };
 };
@@ -48,23 +66,33 @@ const PreviewForm = ({ watchAllFields, dataLab }) => {
   return (
     <LabCardInventaris
       title={watchAllFields.NamaAlat}
-      subtitle={watchAllFields.jenisInventaris}
+      subtitle={watchAllFields.SubInv}
       // src="/images/microscope.jpg"
       src=""
       type={watchAllFields.kategori_id}
-      code={watchAllFields.kodeBarang}
+      code={watchAllFields.kode_barang}
       lab={watchAllFields.lab_id}
-      lab={
-        dataLab.filter((item) => item.id_labor === watchAllFields.lab_id)[0]
-          .ruangan
-      }
+      // lab={
+      //   dataLab.filter((item) => item.id_labor === watchAllFields.lab_id)[0]
+      //     .ruangan
+      // }
       stock={watchAllFields.Quantity}
     />
   );
 };
 
-function LabFormInventaris({ items, kosongan = false }) {
+function LabFormInventaris({ items, kosongan = false, type }) {
   const classes = useStyles();
+
+  React.useEffect(() => {
+    dispatch(kategoriGet());
+  }, []);
+
+  const dataKategori = useSelector((state) =>
+    state.kategori.data.map((item) => ({
+      ...item,
+    }))
+  );
 
   const dataLab = useSelector((state) =>
     state.lab.data.map((item) => ({
@@ -74,7 +102,7 @@ function LabFormInventaris({ items, kosongan = false }) {
 
   const kode_barang = kosongan ? "0" : convertKodeBarang(items.id_alat);
   const { register, watch, control, handleSubmit } = useForm(
-    propsForm(items, kode_barang)
+    kosongan ? propsFormKosongan() : propsForm(items, kode_barang)
   );
 
   const watchAllFields = watch();
@@ -89,6 +117,19 @@ function LabFormInventaris({ items, kosongan = false }) {
   const handleClickApply = (value) => {
     console.log("Ongoing Submit:", value);
     // dispatch(inventarisByIdUpdate({data: value, id: route.query.id}));
+    type === "add"
+      ? dispatch(
+          inventarisPost({
+            NamaAlat: value.NamaAlat,
+            lab_id: value.lab_id,
+            SubInv: value.SubInv,
+            Quantity: value.Quantity,
+            kategori_id: value.kategori_id,
+            gambarAlat: value.gambarAlat,
+            // gambarAlat: fileRef.current.files[0],
+          })
+        )
+      : null;
     setOpenSaveDialog(false);
   };
 
@@ -111,7 +152,7 @@ function LabFormInventaris({ items, kosongan = false }) {
                   )}
                 />
                 <Controller
-                  name="jenisInventaris"
+                  name="SubInv"
                   control={control}
                   render={({ field: { onChange, value } }) => (
                     <LabFormField
@@ -168,55 +209,61 @@ function LabFormInventaris({ items, kosongan = false }) {
                 />
               </Grid>
             </Grid>
-            <Box mt={1}>
-              <Typography
-                variant="h4"
-                component="p"
-                className={classes.kategoriLabel}
-              >
-                Kategori
-              </Typography>
-              <Grid
-                container
-                item
-                xs={12}
-                display="flex"
-                justify="flex-start"
-                alignItems="center"
-              >
-                <Controller
-                  name="kategori_id"
-                  control={control}
-                  render={({ field }) => (
-                    <LabFormField
-                      className={classes.kategoriChip}
-                      type="text"
-                      {...field}
-                      style={{ width: "18ch" }}
-                    />
-                  )}
-                />
-              </Grid>
+            <Box mb={2}>
+              <Controller
+                name="kategori_id"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <FormControl variant="outlined">
+                    <Box mb={1}>
+                      <Typography>Kategori</Typography>
+                    </Box>
+                    <Select
+                      labelId="kategori_idLabel"
+                      id="kategori_idSelect"
+                      fullWidth
+                      value={value}
+                      onChange={onChange}
+                    >
+                      {dataKategori.map((item) => (
+                        <MenuItem value={item.id_kategori}>
+                          {item.Kategori}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                )}
+              />
             </Box>
             <Box mt={3}>
               <Controller
                 name="gambarAlat"
                 control={control}
-                render={({ field: { onChange, value } }) => (
-                  <LabDropZone
-                    title="Upload Foto Alat/Bahan"
-                    onSave={handleClickSave}
-                    type="submit"
-                    onlyImage
-                    helperText="Tahan dan lepaskan fail gambar di sini atau klik"
-                    filesLimit={1}
-                    value={value}
-                    onChange={onChange}
-                    // onChange={(files) => console.log("Files:", files)}
+                render={({ field: { onChange } }) => (
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => onChange(e.target.files[0])}
+                    // onChange={onChange}
                   />
+                  // <LabDropZone
+                  //   title="Upload Foto Alat/Bahan"
+                  //   onSave={handleClickSave}
+                  //   type="submit"
+                  //   onlyImage
+                  //   helperText="Tahan dan lepaskan fail gambar di sini atau klik"
+                  //   filesLimit={1}
+                  //   // value={value}
+                  //   onChange={(files) => {
+                  //     console.log("Files:", files);
+                  //     onChange;
+                  //   }}
+                  //   // onChange={(files) => console.log("Files:", files)}
+                  // />
                 )}
               />
             </Box>
+            <LabButton type="submit">Submit</LabButton>
             <LabDialogSimpan
               open={openSaveDialog}
               onClick={handleSubmit(handleClickApply)}

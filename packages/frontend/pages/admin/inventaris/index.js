@@ -25,7 +25,10 @@ function AdminInventarisPage() {
   );
 
   const dataLab = useSelector((state) =>
-    state.lab.data.map((item) => item.ruangan)
+    state.lab.data.map((item) => ({
+      ruangan: item.ruangan,
+      id: item.id_labor,
+    }))
   );
 
   const [openPopper, setOpenPopper] = useState(false);
@@ -64,7 +67,7 @@ function AdminInventarisPage() {
             style={{ marginTop: 12 }}
           >
             {selectedListItem !== null
-              ? dataLab[selectedListItem]
+              ? dataLab[selectedListItem].ruangan
               : "Pilih Lab"}
           </LabButtonDropdown>
           <Box>
@@ -72,7 +75,7 @@ function AdminInventarisPage() {
               {dataLab.map((item, index) => {
                 return (
                   <LabListItemLink
-                    text={item}
+                    text={item.ruangan}
                     onClick={() => {
                       setSelectedListItem(index);
                       setOpenPopper(false);
@@ -87,7 +90,10 @@ function AdminInventarisPage() {
           </Box>
         </Grid>
       </Grid>
-      <LabCariInventaris items={dataInventaris} />
+      <LabCariInventaris
+        items={dataInventaris}
+        id_lab={selectedListItem === null ? null : dataLab[selectedListItem].id}
+      />
     </>
   );
 }

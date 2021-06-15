@@ -7,9 +7,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import { LabCard, LabCardAlatInstrumen } from "@/components/surfaces/LabCard";
 import { LabButton, LabWarnButton } from "@/components/inputs/LabButton";
 import LabSearchField from "@/components/inputs/LabSearchField";
+import convertKodeBarang from "@/utils/tools/convertKodeBarang";
 
 import LabCardPagination from "@/sections/LabCardPagination";
 import LabCardInventaris from "@/sections/LabCardInventaris";
+
+import { useSelector } from "react-redux";
+import { dispatch } from "@/utils/redux/store";
+import {
+  inventarisGet,
+  inventarisDelete,
+} from "@/utils/redux/slice/inventaris";
 
 const useStyles = makeStyles((theme) => ({
   detailItem: {
@@ -20,8 +28,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LabCariInventaris({ items }) {
+function LabCariInventaris({ items, id_lab }) {
   const [selectedInventaris, setSelectedInventaris] = React.useState(null);
+  const loadingState = useSelector((state) => state.loading);
+  React.useEffect(() => {
+    console.log("id_lab", id_lab);
+  }, [id_lab]);
 
   const handleButtonKeterangan = (_event, index) => {
     setSelectedInventaris(items[index]);
@@ -46,7 +58,7 @@ function LabCariInventaris({ items }) {
                     <LabCardAlatInstrumen
                       key={item.NamaAlat}
                       title={item.NamaAlat}
-                      subtitle={item.NamaAlat}
+                      subtitle={item.SubInv}
                       image={item.gambarAlat}
                       jenis={item.kategori_id.Kategori}
                       button="Keterangan"
@@ -70,10 +82,10 @@ function LabCariInventaris({ items }) {
           ) : (
             <LabCardInventaris
               title={selectedInventaris.NamaAlat}
-              subtitle={selectedInventaris.NamaAlat}
+              subtitle={selectedInventaris.SubInv}
               src={selectedInventaris.gambarAlat}
               type={selectedInventaris.kategori_id.Kategori}
-              code={24}
+              code={convertKodeBarang(selectedInventaris.id_alat)}
               lab={selectedInventaris.lab_id.ruangan}
               stock={selectedInventaris.Quantity}
             />
@@ -87,7 +99,14 @@ function LabCariInventaris({ items }) {
             justify="flex-end"
           >
             <Grid item>
-              <LabWarnButton>Hapus</LabWarnButton>
+              <LabWarnButton
+                onClick={() => {
+                  dispatch(inventarisDelete(selectedInventaris.id_alat));
+                  dispatch(inventarisGet());
+                }}
+              >
+                Hapus
+              </LabWarnButton>
             </Grid>
             <div style={{ marginLeft: 8 }} />
             <Grid item>

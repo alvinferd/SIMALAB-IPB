@@ -1,9 +1,12 @@
 import axios from "axios";
+import Cookie from "js-cookie";
 
-export const TOKEN_KEY = "39245ba233a67f03b5d969191660e608c36c4cda";
+// export const TOKEN_KEY = "f32e5b8d0762f05d6f494146988164b24674fa7c";
+export const TOKEN_KEY = "dG9rZW5TaW1hbGFi";
 
 function handleRequestSend(config) {
-  config.headers.Authorization = `Token ${TOKEN_KEY}`;
+  const token = Cookie.get(TOKEN_KEY);
+  if (!!token) config.headers.Authorization = `Token ${token}`;
   console.dir(config);
   return config;
 }
@@ -24,10 +27,10 @@ function handleResponseError(error) {
 }
 
 const baseApi = axios.create({
-  baseURL: "http://localhost:8000/api",
+  baseURL: "http://34.101.142.194:31337/",
   headers: {
     post: {
-      "Content-Type": "application/json;charset=utf-8",
+      "Content-Type": "multipart/form-data",
       "Access-Control-Allow-Origin": "*",
     },
     get: {

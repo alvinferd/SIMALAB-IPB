@@ -74,4 +74,40 @@ export const inventarisByIdEdit = createAsyncThunk(
   }
 );
 
+export const inventarisPost = createAsyncThunk(
+  "inventarisPost/add",
+  async (data, { dispatch }) => {
+    console.log("data:", data);
+    dispatch(loadingSet(true));
+    return baseApi
+      .post(`/CUDalat/`, data)
+      .then((res) => {
+        dispatch(loadingSet(false));
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+);
+
+export const inventarisDelete = createAsyncThunk(
+  "inventarisPost/delete",
+  async (id, { dispatch }) => {
+    console.log("id", id);
+    dispatch(loadingSet(true));
+    return baseApi
+      .delete(`/CUDalat/${id}`)
+      .then((res) => {
+        dispatch(loadingSet(false));
+        dispatch(inventarisGet());
+        console.log(res);
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+);
+
 export default inventarisSlice.reducer;
