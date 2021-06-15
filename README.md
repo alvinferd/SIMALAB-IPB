@@ -155,7 +155,8 @@ Polymorphism merupakan konsep oop dimana class memiliki banyak "bentuk" method y
 contoh penerapan:
 ```
 class AuthenticationBackend(ModelBackend):
-
+    
+    # pada parent class (ModelBackend) sudah memiliki method authenticate
     def authenticate(self, request, username=None, password=None, **kwargs):
 
         mahasiswa_res = login_mahasiswa(username, password)
