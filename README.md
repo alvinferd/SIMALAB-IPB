@@ -131,7 +131,7 @@ Berikut tujuan dari interview yang kami lakukan:
 
 https://simalab.bintangfikriguska.my.id
 
-### Endpoint SIMALAB API
+** Endpoint SIMALAB API **
 
 | Endpoint API | Fungsi | Method |
 | :---         | :---  | :---   |
