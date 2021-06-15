@@ -35,7 +35,7 @@ router.register(r'templateForm', views.templateView, 'simalab')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
+    path('', include(router.urls)),
     path('api-token-auth/', drf_views.obtain_auth_token, name='api-token-auth'),
 ]
 
