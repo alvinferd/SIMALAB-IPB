@@ -25,6 +25,7 @@ __Software__
     - n1-standard-2 (2 vCPUs, 7.5 GB memory)
     - asia-southeast2-a 
     - Ubuntu 20.04.2.0 LTS
+- Cloudflare
 - Windows 10 64 bit
 - Sublime Text v3.2.2    
 - Visual Code Studio v1.57
