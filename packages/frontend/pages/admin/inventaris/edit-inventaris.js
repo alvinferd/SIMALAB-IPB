@@ -14,15 +14,23 @@ import LabFormInventaris from "@/sections/LabFormInventaris";
 function AdminEditInventarisPage() {
   const router = useRouter();
   // console.log(router);
+  const [dispatched, setDispatched] = useState(false);
   useEffect(() => {
-    dispatch(inventarisByIdGet(router.query.id));
+    setDispatched(false);
+    dispatch(inventarisByIdGet(router.query.id)).finally(setDispatched(true));
   }, []);
 
-  const dataInventarisById = useSelector((state) => state.inventaris.byId);
-
-  // useEffect(() => {
-  //   console.log("inventaris", dataInventarisById);
-  // }, [dataInventarisById]);
+  // const dataInventarisById = useSelector((state) => state.inventaris.byId);
+  const dataInventarisById = useSelector(
+    (state) =>
+      state.inventaris.data.filter(
+        (item) => item.id_alat === router.query.id
+      )[0]
+  );
+  const loadingState = useSelector((state) => state.loading);
+  useEffect(() => {
+    console.log(dataInventarisById);
+  }, [dataInventarisById]);
 
   return (
     <>
@@ -49,9 +57,11 @@ function AdminEditInventarisPage() {
           </Grid>
         </Grid>
       </Button>
-      {dataInventarisById !== [] ? (
+      {/* {dispatched && loadingState === false ? (
         <LabFormInventaris items={dataInventarisById} type="edit" />
-      ) : null}
+      ) : null} */}
+
+      <LabFormInventaris items={dataInventarisById} type="edit" />
     </>
   );
 }
