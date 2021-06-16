@@ -142,7 +142,6 @@ user_att = MhsSerializer()
 lab_att = laborSerializer()
 queryset = AlatLab.objects.all()
 ```
-Pada contoh diatas, user_att merupakan object dari class MhsSerializer. Terdapat toal
 
 
    ***Abstraction***|
