@@ -113,55 +113,76 @@ Berikut tujuan dari interview yang kami lakukan:
 
 
 **Konsep OOP yang Digunakan**
-   ***Object***|
+   ***Class***|
+--------------|   
+
+Class merupakan *blueprint* dari objek yang mendefinisikan properti (sifat) dan method (perilaku) dari suatu objek. Pada implementasi sistem, kami menggunakan class untuk membuat model, view dan serializer. Terdapat total 53 class yang dibuat pada sistem.
+
+contoh penerapan:
+```
+class Laboratorium(models.Model):
+    id_labor = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,)
+    ruangan = models.CharField(max_length=100, blank=False, null=False)
+    departemen = models.CharField(max_length=500, blank=False, null=False)
+
+    def __str__(self):
+        return self.ruangan
+```
+
+
+***Object***|
 --------------|   
 
 Objek adalah suatu entitas yang memiliki sifat atau karakter dan perilaku tertentu. Contohnya adalah kucing, mobil, manusia, dll. 
 
 contoh penerapan:
 ```
-user_id = MhsSerializer()
+user_att = MhsSerializer()
+lab_att = laborSerializer()
+queryset = AlatLab.objects.all()
 ```
+Pada contoh diatas, user_att merupakan object dari class MhsSerializer. Terdapat toal
 
-   ***Class***|
---------------|
-
-Class merupakan *blueprint* dari objek yang mendefinisikan properti (sifat) dan method (perilaku) dari suatu objek.
-
-contoh penerapan:
-```
-class KategoriAlat(models.Model):
-    id_kategori = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,)
-    Kategori = models.CharField(max_length=100, blank=False, null=False)
-    Keterangan = models.CharField(max_length=500, blank=False, null=False)
-
-    def __str__(self):
-        return self.Kategori
-```
 
    ***Abstraction***|
 --------------|
 
-Abstraction adalah teknik untuk hanya menampilkan informasi yang perlu ditampilkan pada suatu objek, informasi-informasi yang tidak perlu tidak akan ditampikan.
+Abstraction adalah teknik untuk hanya menampilkan informasi yang perlu ditampilkan pada suatu objek, informasi-informasi yang tidak perlu tidak akan ditampikan. Salah satu model yang dibangun sebagai abstract model adalah User.
 ```
-
+class User(AbstractBaseUser, PermissionsMixin):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,)
+    username = models.CharField(max_length=32, blank=False, null=False, unique=True)
+    
+    is_mahasiswa = models.BooleanField(default=False)
+    is_adminLab = models.BooleanField(default=False)
 ```
 
    ***Polymorphism***|
 --------------|
 
-Polymorphism merupakan konsep oop dimana class memiliki banyak "bentuk" method yang berbeda, meskipun namanya sama.
+Polymorphism merupakan konsep oop dimana class memiliki banyak "bentuk" method yang berbeda, meskipun namanya sama. Penerapan hal ini pada sistem salah satunya pada serializer, dimana terdapat beberapa method yang sama digunakan pada class yang ada.
 
 contoh penerapan:
 ```
-class AuthenticationBackend(ModelBackend):
-    
-    # pada parent class (ModelBackend) sudah memiliki method authenticate
-    def authenticate(self, request, username=None, password=None, **kwargs):
-
-        mahasiswa_res = login_mahasiswa(username, password)
-        admin_lab_res = login_admin_lab(username, password)
-        ...
+class alatSerializer(serializers.ModelSerializer):
+    kategori_id = kategoriSerializer()
+    lab_id = laborSerializer()
+    class Meta:
+        model = AlatLab
+        fields = ('id_alat','NamaAlat','Quantity','SubInv','gambarAlat','kategori_id','lab_id')
+    def create(self, validated_data):
+        contact_data = validated_data.pop('kategori_id')  
+        
+ ....
+ 
+ class submisiSerializer(serializers.ModelSerializer):
+    user_id = MhsSerializer()
+    ruangan_id = laborSerializer()
+    class Meta:
+        model = Form_Submisi
+        fields = ('id_form','judulPenelitian','no_hp','dosbing','date_form','date_peminjaman','file1','file2','Verifikasi','Status','user_id','ruangan_id')
+    def create(self, validated_data):
+        contact_data = validated_data.pop('ruangan_id')  
 ```
 
 **Tipe Desain Pengembangan**
