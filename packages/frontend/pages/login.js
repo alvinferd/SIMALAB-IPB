@@ -81,6 +81,7 @@ function Login() {
             container
             justify="center"
             alignItems="center"
+            direction="column"
             className={classes.item}
           >
             <Grid className={classes.item} style={{ marginRight: 12 }}>

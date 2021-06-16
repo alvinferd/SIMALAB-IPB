@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { Button, Grid, Typography, Box } from "@material-ui/core";
 import { ListRequestItemDummy } from "@/utils/dummy/ListItemsInventaris";
@@ -10,9 +11,24 @@ import LabPeminjamanAlat from "@/sections/LabPeminjamanAlatInstrumen";
 import SimalabLayout from "@/layouts/default";
 import useStyles from "../../admin/pinjam-lab/form-peminjaman"
 
+import { useSelector } from "react-redux";
+import { dispatch } from "@/utils/redux/store";
+import { inventarisGet, inventarisDelete } from "@/utils/redux/slice/inventaris";
+
 const requestPeminjamanUser = () => {
     const classes = useStyles();
     const router = useRouter();
+
+    useEffect(() => {
+        dispatch(inventarisGet());
+      }, [])
+
+    const dataInventaris = useSelector((state) =>
+        state.inventaris.data.map((item) => ({
+            ...item,
+        }))
+    );
+
     return (
         <>
             <Button
@@ -48,7 +64,7 @@ const requestPeminjamanUser = () => {
                 </Grid>
                 <Grid item xs={6}>
                     <LabCard title="Peminjaman Alat Instrumen ">
-                        <LabPeminjamanAlat items={ListRequestItemDummy} />
+                        <LabPeminjamanAlat items={dataInventaris} />
                     </LabCard>
                 </Grid>
                 <Grid item xs={6}>

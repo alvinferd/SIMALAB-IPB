@@ -113,40 +113,55 @@ Berikut tujuan dari interview yang kami lakukan:
 
 
 **Konsep OOP yang Digunakan**
-
-   ***Classs***|
---------------|
-```
-aaa
-aaaaaaaa
-```
-
    ***Object***|
 --------------|   
+
+Objek adalah suatu entitas yang memiliki sifat atau karakter dan perilaku tertentu. Contohnya adalah kucing, mobil, manusia, dll. 
+
+contoh penerapan:
 ```
-aaa
-aaaaaaaa
+user_id = MhsSerializer()
 ```
 
-   ***Method***|
+   ***Class***|
 --------------|
+
+Class merupakan *blueprint* dari objek yang mendefinisikan properti (sifat) dan method (perilaku) dari suatu objek.
+
+contoh penerapan:
 ```
-aaa
-aaaaaaaa
+class KategoriAlat(models.Model):
+    id_kategori = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,)
+    Kategori = models.CharField(max_length=100, blank=False, null=False)
+    Keterangan = models.CharField(max_length=500, blank=False, null=False)
+
+    def __str__(self):
+        return self.Kategori
 ```
 
-   ***Abstract***|
+   ***Abstraction***|
 --------------|
+
+Abstraction adalah teknik untuk hanya menampilkan informasi yang perlu ditampilkan pada suatu objek, informasi-informasi yang tidak perlu tidak akan ditampikan.
 ```
-aaa
-aaaaaaaa
+
 ```
 
    ***Polymorphism***|
 --------------|
+
+Polymorphism merupakan konsep oop dimana class memiliki banyak "bentuk" method yang berbeda, meskipun namanya sama.
+
+contoh penerapan:
 ```
-aaa
-aaaaaaaa
+class AuthenticationBackend(ModelBackend):
+    
+    # pada parent class (ModelBackend) sudah memiliki method authenticate
+    def authenticate(self, request, username=None, password=None, **kwargs):
+
+        mahasiswa_res = login_mahasiswa(username, password)
+        admin_lab_res = login_admin_lab(username, password)
+        ...
 ```
 
 **Tipe Desain Pengembangan**

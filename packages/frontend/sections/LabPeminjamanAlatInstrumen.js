@@ -7,6 +7,8 @@ import LabButton from "@/components/inputs/LabButton";
 import GridList from '@material-ui/core/GridList';
 import Divider from '@material-ui/core/Divider';
 import { LabCardAlatInstrumen, LabCardRequestAlat } from "@/components/surfaces/LabCard";
+import { dispatch } from "@/utils/redux/store";
+import { inventarisGet, inventarisDelete } from "@/utils/redux/slice/inventaris";
 
 const useStyles = makeStyles((theme) => ({
     textField: {
@@ -35,7 +37,10 @@ const LabPeminjamanAlat = ({ items }) => {
 
     const handleButtonTambah = (_event, index) => {
         setSelectedInventaris(items[index]);
+        setSum(sum + 1);
     };
+
+    const [sum, setSum] = React.useState(0);
 
     return (
         <Box className={classes.textField}>
@@ -50,21 +55,23 @@ const LabPeminjamanAlat = ({ items }) => {
                 </Box>
                 <Grid container xs={12} spacing={1} style={{ marginTop: 16 }}>
                     {items.map((item, index) => {
-                        return (
-                            <Grid item xs={6}>
-                                <LabCardAlatInstrumen
-                                    key={item.title}
-                                    title={item.title}
-                                    subtitle={item.subtitle}
-                                    image={item.image}
-                                    jenis={item.jenis}
-                                    button="Tambah"
-                                    onButtonClick={(event) =>
-                                        handleButtonTambah(event, index)
-                                    }
-                                />
-                            </Grid>
-                        );
+                        if(index<2){
+                            return (
+                                <Grid item xs={6}>
+                                    <LabCardAlatInstrumen
+                                        key={item.NamaAlat}
+                                        title={item.NamaAlat}
+                                        subtitle={item.SubInv}
+                                        image={item.gambarAlat}
+                                        jenis={item.kategori_id.Kategori}
+                                        button="Tambah"
+                                        onButtonClick={(event) =>
+                                            handleButtonTambah(event, index)
+                                        }
+                                    />
+                                </Grid>
+                            );
+                        } 
                     })}
                 </Grid>
                 <Box mt={3}>
@@ -78,10 +85,10 @@ const LabPeminjamanAlat = ({ items }) => {
                             <Typography>Belum ada alat yang dipilih.</Typography>
                         ) : (
                             <LabCardRequestAlat
-                                title={selectedInventaris.title}
-                                subtitle={selectedInventaris.subtitle}
-                                jenis={selectedInventaris.jenis}
-                                image={selectedInventaris.image}
+                                title={selectedInventaris.NamaAlat}
+                                subtitle={selectedInventaris.SubInv}
+                                jenis={selectedInventaris.kategori_id.Kategori}
+                                image={selectedInventaris.gambarAlat}
                             />
                         )}
                     </GridList>
@@ -93,7 +100,7 @@ const LabPeminjamanAlat = ({ items }) => {
                     <Grid container justify="space-between" alignItems="center">
                         <Grid item>
                             <Typography variant="h4" component="div">
-                                Total Item : 2
+                                Total Item : {sum}
                             </Typography>
                         </Grid>
                         <Grid item>
