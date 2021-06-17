@@ -1,5 +1,6 @@
+import { useEffect } from "react";
 import Router from "next/router";
-
+import moment from "moment";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
@@ -15,7 +16,48 @@ import {
   ListTableWidthColumn,
 } from "@/utils/dummy/ListTableAdminDashboard";
 
+import { useSelector } from "react-redux";
+import { dispatch } from "@/utils/redux/store";
+import { peminjamanGet } from "@/utils/redux/slice/peminjaman";
+import { submisiGet } from "@/utils/redux/slice/submisiPeminjaman";
+
+const convertToArray = (index, lab, date, status, id) => {
+  return [index, lab, date, status, id];
+};
+
+const filteredSubmisi = (dataSubmisi) => {
+  let arr = [];
+  for (const i in dataSubmisi) {
+    arr.push(
+      convertToArray(
+        Number(i) + 1,
+        dataSubmisi[i].ruangan_id.ruangan,
+        moment(dataSubmisi[i].date_peminjaman).format("ll"),
+        dataSubmisi[i].Verifikasi ? "Disetujui" : "Ditinjau",
+        dataSubmisi[i].id_form
+      )
+    );
+  }
+  return arr;
+};
 function AdminPinjamLabPage() {
+  useEffect(() => {
+    dispatch(peminjamanGet());
+    dispatch(submisiGet());
+  }, []);
+
+  const dataSubmisi = useSelector((state) =>
+    state.submisi.data.map((item) => ({
+      ...item,
+    }))
+  );
+
+  const dataPeminjaman = useSelector((state) =>
+    state.peminjaman.data.map((item) => ({
+      ...item,
+    }))
+  );
+
   return (
     <>
       <Grid container justify="space-between" spacing={8}>
@@ -43,20 +85,26 @@ function AdminPinjamLabPage() {
               <Grid item xs={4}>
                 <Typography variant="body1">Belum dikonfirmasi</Typography>
                 <Typography variant="h2" component="p">
-                  6
+                  {
+                    dataSubmisi.filter((item) => item.Verifikasi === false)
+                      .length
+                  }
                 </Typography>
                 <Divider orientation="vertical" flexItem />
               </Grid>
               <Grid item xs={4}>
                 <Typography variant="body1">Sudah dikonfirmasi</Typography>
                 <Typography variant="h2" component="p">
-                  8
+                  {
+                    dataSubmisi.filter((item) => item.Verifikasi === true)
+                      .length
+                  }
                 </Typography>
               </Grid>
               <Grid item xs={4}>
                 <Typography variant="body1">Semua</Typography>
                 <Typography variant="h2" component="p">
-                  12
+                  {dataSubmisi.length}
                 </Typography>
               </Grid>
             </Grid>
@@ -80,7 +128,7 @@ function AdminPinjamLabPage() {
             <LabCard title="Semua">
               <LabTable
                 column={ListTableColumnDummy}
-                data={ListTableDummy}
+                data={filteredSubmisi(dataSubmisi)}
                 widthColumn={ListTableWidthColumn}
               />
             </LabCard>

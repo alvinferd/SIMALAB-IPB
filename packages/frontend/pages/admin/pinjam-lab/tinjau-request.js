@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import moment from "moment";
 
 import { Grid, Button, Typography } from "@material-ui/core";
 
@@ -12,8 +13,36 @@ import LabFormPeminjaman from "@/sections/LabFormPeminjaman";
 import LabIdentitasPeminjam from "@/sections/LabIdentitasPeminjam";
 import LabCardPagination from "@/sections/LabCardPagination";
 
+import { useSelector } from "react-redux";
+import { dispatch } from "@/utils/redux/store";
+import { peminjamanGet } from "@/utils/redux/slice/peminjaman";
+import { submisiGet, submisiEdit } from "@/utils/redux/slice/submisiPeminjaman";
+
 function AdminTinjauRequestPage() {
   const router = useRouter();
+
+  const dataSubmisiById = useSelector(
+    (state) =>
+      state.submisi.data.filter((item) => item.id_form === router.query.id)[0]
+  );
+
+  const dataPeminjam = {
+    name: dataSubmisiById.user_id.Nama,
+    status: dataSubmisiById.user_id.strata,
+    lab: dataSubmisiById.ruangan_id.ruangan,
+    nim: dataSubmisiById.user_id.NIM,
+    departemen: dataSubmisiById.user_id.departemen,
+    date: moment(dataSubmisiById.date_peminjaman).format("ll"),
+  };
+
+  const dataForm = {
+    title: dataSubmisiById.judulPenelitian,
+    dosen: dataSubmisiById.dosbing,
+    phone: dataSubmisiById.no_hp,
+    lab: dataSubmisiById.ruangan_id.ruangan,
+    file: [dataSubmisiById.file1, dataSubmisiById.file2],
+  };
+
   return (
     <>
       <Button
@@ -42,7 +71,7 @@ function AdminTinjauRequestPage() {
       <Grid container spacing={3}>
         <Grid item xs={6}>
           <LabCard title="Identitas Peminjam" margin={16}>
-            <LabIdentitasPeminjam />
+            <LabIdentitasPeminjam data={dataPeminjam} />
           </LabCard>
           <LabCard title="Peminjaman Alat Instrumen" margin={24}>
             <Grid container spacing={2}>
@@ -68,7 +97,11 @@ function AdminTinjauRequestPage() {
         </Grid>
         <Grid item xs={6}>
           <LabCard title="Form Peminjaman Lab" margin={16}>
-            <LabFormPeminjaman type="preview" viewRequest={true} />
+            <LabFormPeminjaman
+              type="preview"
+              viewRequest={true}
+              data={dataForm}
+            />
           </LabCard>
           <Grid
             container
@@ -88,10 +121,32 @@ function AdminTinjauRequestPage() {
               inventaris.
             </Typography>
             <Grid item>
-              <LabWarnButton>Tolak</LabWarnButton>
+              <LabWarnButton
+                onClick={() =>
+                  dispatch(
+                    submisiEdit({
+                      id: router.query.id,
+                      data: { Verifikasi: false },
+                    })
+                  )
+                }
+              >
+                Tolak
+              </LabWarnButton>
             </Grid>
             <Grid item>
-              <LabSuccessButton>Setuju</LabSuccessButton>
+              <LabSuccessButton
+                onClick={() =>
+                  dispatch(
+                    submisiEdit({
+                      id: router.query.id,
+                      data: { Verifikasi: true },
+                    })
+                  )
+                }
+              >
+                Setuju
+              </LabSuccessButton>
             </Grid>
           </Grid>
         </Grid>
