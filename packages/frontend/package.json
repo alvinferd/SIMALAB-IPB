@@ -15,7 +15,12 @@
     "framer-motion": "^4.1.17",
     "js-cookie": "^2.2.1",
     "material-ui-dropzone": "^3.5.0",
+<<<<<<< HEAD
     "next": "^10.2.3",
+=======
+    "moment": "^2.29.1",
+    "next": "10.2.3",
+>>>>>>> b2e4d76345c7fee5c25fcd880a91cdbb80ffa333
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-calendar": "^3.4.0",
