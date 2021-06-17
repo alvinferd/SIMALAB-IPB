@@ -1,0 +1,41 @@
+import requests
+# import simalab.core.models import 
+
+class SSOIPB():
+
+    
+    def login(self):
+        self.login_mahasiswa()
+        self.login_admin_lab()
+    
+    def getType():
+        return typ
+
+    def setUnamePass(self, uname, passwd):
+        username = uname
+        password = passwd
+
+    def login_mahasiswa(self):
+    	r = requests.post('http://api.ipb.ac.id/v1/Authentication/LoginMahasiswa',
+			headers={'X-IPBAPI-Token': 'Bearer 6454b1ff-7dce-396d-9b07-4f88248072b6'},
+			json={'userName': username, 'password': password})
+	res = r.json()
+	if 'Error' not in res:
+            typ = 'MAHASISWA'
+        else:
+            typ = None
+
+
+    def login_admin_lab(self):
+	r = requests.post('http://api-simalab.bintangfikriguska.my.id/orang/',
+			headers={'Authorization': 'Token eeacca61279df8d5656bd728ef22cf554df67cbf'},
+			json={'userName': username, 'password': password})
+        
+
+	res = r.json()
+        if 'Error' not in res:
+            typ = 'ADMINLAB'
+        else:
+            typ = None
+
+        

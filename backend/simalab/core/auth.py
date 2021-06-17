@@ -16,8 +16,8 @@ class AuthenticationBackend(ModelBackend):
                 user = User.objects.get(username=username)
             except User.DoesNotExist:
                 user = User(username=username)
-                user.is_staff = True # nanti jadiin False
-                user.is_superuser = True # nanti jadiin False
+                user.is_staff = False
+                user.is_superuser = False
                 user.is_mahasiswa = True
                 user.save()
                 mahasiswa = Mahasiswa.objects.create(user=user)
