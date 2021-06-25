@@ -195,53 +195,45 @@ class alatSerializer(serializers.ModelSerializer):
 
    ***Login Page***|
 --------------|   
-```
-aaa
-aaaaaaaa
-```
+ ![login](lampiran/login.png) |
+
+---
 
    ***Dashboard User***|
 --------------|   
-```
-aaa
-aaaaaaaa
-```
+ ![dashboard](lampiran/dashboard_user.png) |
+
+---
 
    ***Informasi Peralatan Lab***|
 --------------|   
-```
-aaa
-aaaaaaaa
-```
+ ![info](lampiran/peralatan_lab.png) |
+
+---
 
    ***Form Peminjaman***|
 --------------|   
-```
-aaa
-aaaaaaaa
-```
+ ![form](lampiran/form_peminjaman.png) |
+
+---
 
    ***Dashboard Admin***|
 --------------|   
-```
-aaa
-aaaaaaaa
-```
+ ![admin](lampiran/dashboard_admin.png) |
+
+---
 
    ***Manage , Verfikasi Request Peminjaman***|
 --------------|   
-```
-aaa
-aaaaaaaa
-```
+ ![manage](lampiran/Manage.png) |
 
+---
 
    ***Manage Inventaris Lab***|
 --------------|   
-```
-aaa
-aaaaaaaa
-```
+ ![manage](lampiran/upload_bahan.png) |
+
+---
 
 ---
 
