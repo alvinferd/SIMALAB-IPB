@@ -195,7 +195,7 @@ class alatSerializer(serializers.ModelSerializer):
 
    ***Login Page***|
 --------------|   
- ![login](lampiran/login.png) |
+ ![Login](lampiran/Login.jpg) |
 
 ---
 
